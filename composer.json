@@ -1,0 +1,30 @@
+{
+  "name": "learnerssl/quickphp",
+  "description": "The quickphp Framework",
+  "keywords": [
+    "PHP",
+    "Framework",
+    "learnerssl",
+    "quickphp"
+  ],
+  "license": "MIT",
+  "type": "project",
+  "time": "2017-09-8",
+  "authors": [
+    {
+      "name": "ssl",
+      "email": "312785362@qq.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "filp/whoops": "*"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://packagist.phpcomposer.com"
+    }
+  }
+}

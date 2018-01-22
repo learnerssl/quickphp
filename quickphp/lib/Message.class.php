@@ -7,7 +7,7 @@
  */
 
 /**
- * 百度地图类
+ * 发送短信类
  */
 
 namespace quickphp\lib;

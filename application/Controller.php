@@ -52,11 +52,10 @@ class Controller
      * @param string $url 跳转路径
      * @return mixed
      */
-    protected function error($message = '', $url = '')
+    public function error($message = '', $url = '/')
     {
         $default_message = empty($message) ? '抱歉，你输入的网址可能不正确，或者该网页不存在。' : $message;
-        $default_url = empty($url) ? '/' : $url;
-        $this->display('common:common/error.php', array('message' => $default_message, 'url' => $default_url));
+        $this->display('common:common/error.php', array('message' => $default_message, 'url' => $url));
         exit;
     }
 

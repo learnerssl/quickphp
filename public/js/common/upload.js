@@ -1,7 +1,7 @@
 //定义操作js公共路径
 const SCOPE = {
-    'upload_url': '/index.php/admin/Common/upload', //上传文件路径
-    'kindeditorupload_url': '/index.php/admin/Common/kindeditorupload' //kindeditor上传文件路径
+    'upload_url': '/index.php/common/Utlis/upload', //上传文件路径
+    'kindeditorupload_url': '/index.php/common/Utlis/kindeditorupload' //kindeditor上传文件路径
 };
 
 /**
@@ -79,6 +79,7 @@ function upload(id = 'img', compressImage = false, addTextmark = false) {
         ...config,
         'formData': {id: id, compressImage: compressImage, addTextmark: addTextmark},//通过get或post上传文件时，此对象提供额外的数据。
         'multi': false, //设置是否允许一次选择多个文件，true为允许，false不允许
+        'uploadLimit': '1',//上传文件的数量。
         'onUploadSuccess': function (file, data) {
             //file 已成功上传的文件对象信息(类似于php $_FILES)
             //data 由服务器端脚本返回的数据(接口json返回格式数据）

@@ -13,16 +13,6 @@ let request = {
         //获取表单数据
         let data = $("#" + id).serializeArray();
 
-        // let myInit = {
-        //     method: 'POST',
-        //     credentials: 'same-origin',
-        //     body: new FormData(document.getElementById(id))
-        // };
-        //
-        // fetch(url, myInit).then(response => response.json())
-        //     .then(data => console.log(data))
-        //     .catch(e => console.log("Oops, error", e));
-
         //发送ajax请求
         $.post(url, data, function (result) {
             if (result.error === 1) {

@@ -156,7 +156,7 @@ EOF;
      * @param int $opt 1 清除换行，2 HTML编码
      * @return string
      */
-    public static function html_xss($html, $opt = 1)
+    public static function html_xss($html, $opt = 0)
     {
         $html = self::html_filter($html);
         $html = self::html_encode($html, $opt);

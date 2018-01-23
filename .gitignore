@@ -1,0 +1,7 @@
+/.idea/
+/vendor
+/composer.lock
+/upload
+/cache
+/system.log
+

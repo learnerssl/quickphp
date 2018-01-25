@@ -114,7 +114,12 @@ class Controller
                 throw  new \Exception("模版不存在:" . $file);
             }
         } catch (\Exception $exception) {
-            \common::output($exception->getMessage());
+            $error = array(
+                '错误码' => $exception->getCode(),
+                '错误信息' => $exception->getMessage(),
+                '错误地址' => $exception->getFile() . ' ' . $exception->getLine() . '行',
+            );
+            return \common::output($error);
         }
         return true;
     }

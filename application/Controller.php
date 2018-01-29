@@ -108,6 +108,9 @@ class Controller
                 foreach ($array as $key => $val) {
                     $this->assign($key, $val);
                 }
+                $this->assign('PUBLICCSS', PUBLICCSS);
+                $this->assign('PUBLICJS', PUBLICJS);
+                $this->assign('PUBLICIMG', PUBLICIMG);
                 extract($this->assign);
                 include_once $file;
             } else {

@@ -40,9 +40,9 @@ class config
 
     //默认路由
     public static $default_route = array(
-        "model" => "home",
-        "controller" => "Index",
-        "method" => "index"
+        "model" => "admin",
+        "controller" => "Login",
+        "method" => "login"
     );
 
     //百度地图ak

@@ -19,7 +19,10 @@ class Index extends AdminController
      */
     public function index()
     {
-        return $this->display('admin:Index/index.php');
+        //检查是否登录
+        if ($this->uid) {
+            return $this->display('admin:Index/index.php', $this->param);
+        }
     }
 
     /**

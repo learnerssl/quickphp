@@ -262,4 +262,57 @@ class Wx extends Controller
         return "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=" . urlencode($ret['ticket']);//返回二维码链接地址
     }
 
+    /**
+     * 获取素材列表
+     * 参考链接:https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1444738734
+     * @param string $type 素材的类型，图片（image）、视频（video）、语音 （voice）、图文（news）
+     * @param int $offset 从全部素材的该偏移位置开始返回，0表示从第一个素材 返回
+     * @param int $count 返回素材的数量，取值在1到20之间
+     * @return array  media_id 数组
+     */
+    public function getMaterial($type = 'news', $offset = 0, $count = 20)
+    {
+        //请求api地址
+        $url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=" . $this->getGlobalAccessToken();
+
+        //封装参数
+        $data = array(
+            'type' => $type,
+            'offset' => $offset,
+            'count' => $count
+        );
+
+        $data = Http::http_curl($url, 'post', 'array', json_encode($data));
+
+        $media_ids = array();
+        $items = $data['item'];
+        foreach ($items as $key => $item) {
+            array_push($media_ids, $item['media_id']);
+        }
+
+        return $media_ids;
+    }
+
+    /**
+     * 预览接口
+     * @param $openid string
+     * @param $msgtype string 图文消息:mpnews  文本:text  语音:voice 图片:image 视频:mpvideo
+     * 参考:https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1481187827_i0l21
+     */
+    public function preview($openid, $msgtype = 'mpnews', $media_id = null, $content = null)
+    {
+        //api地址
+        $url = "https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token=" . $this->getGlobalAccessToken();
+
+        //封装数据
+        $data = array(
+            "touser" => $openid,
+            "$msgtype" => $msgtype == 'text' ? array('content' => $content) : array('media_id' => $media_id),
+            "msgtype" => $msgtype
+        );
+
+        //http操作
+        $res = Http::http_curl($url, 'post', 'json', json_encode($data));
+        echo $res;
+    }
 }

@@ -10,11 +10,19 @@
 namespace application\Admin;
 
 use application\Controller;
+use model\crm\User;
+use quickphp\lib\Redis;
 
 class AdminController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
+
+        //获取用户id
+        $this->uid = end(explode(':', Redis::getInstance()->get('user')));
+        if ($this->uid) {
+            $this->param['info'] = User::getInstance()->get_one_date_by_pkey($this->uid);
+        }
     }
 }

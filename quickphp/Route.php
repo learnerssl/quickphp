@@ -18,7 +18,7 @@ class Route
     public static function geRoute($argv)
     {
         //获取crontab定时脚本参数
-        if (is_array($argv) && !empty($argv) && count($argv) < 4) {
+        if (CRONTAB && is_array($argv) && !empty($argv) && count($argv) <= 4) {
             self::$model = $argv[1];
             self::$controller = $argv[2];
             self::$method = $argv[3];

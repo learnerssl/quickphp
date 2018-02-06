@@ -44,7 +44,7 @@ class Login extends AdminController
             self::set_user_redis($info);
 
             //清空token
-            Request::delToken();
+            Request::delToken($post);
 
             //输出
             Response::api_response(1, '登录成功', array('url' => '/index.php/admin/Index/index'));

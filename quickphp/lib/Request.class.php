@@ -106,10 +106,12 @@ class Request
 
     /**
      * 删除csrfToken令牌
+     * @param $post array 表单信息
      * @return bool
      */
-    public static function delToken()
+    public static function delToken(&$post = array())
     {
+        unset($post['token']);
         return Redis::getInstance()->del('csrf');
     }
 }

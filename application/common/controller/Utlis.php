@@ -7,16 +7,16 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\admin\controller;
+namespace application\common\controller;
 
-use application\admin\AdminController;
+use application\Controller;
 use model\sys\Region;
 use quickphp\lib\Cookie;
 use quickphp\lib\Request;
 use quickphp\lib\Response;
 use quickphp\lib\Upload;
 
-class Utlis extends AdminController
+class Utlis extends Controller
 {
     /**
      * 上传图片
@@ -31,8 +31,8 @@ class Utlis extends AdminController
         $compressImage = Request::request('post', 'compressImage', false);
         $addTextmark = Request::request('post', 'addTextmark', false);
 
-//        $compressImage = $compressImage == 'false' ? false : true;
-//        $addTextmark = $addTextmark == 'false' ? false : true;
+        $compressImage = $compressImage == 'false' ? false : true;
+        $addTextmark = $addTextmark == 'false' ? false : true;
 
         //上传图片
         $ret = Upload::getInstance($name)->uploadFile($compressImage, $addTextmark);

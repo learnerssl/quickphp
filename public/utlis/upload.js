@@ -13,7 +13,7 @@ const config = {
     'width': 120, //设置按钮宽度(单位px)，默认120
     'method': 'post', //提交上传文件的方法，接受post或get两个值，默认为post
     'auto': true, ////接受true or false两个值，当为true时选择文件后会自动上传；为false时只会把选择的文件增加进队列但不会上传，这时只能使用upload的方法触发上传。不设置auto时默认为true。
-    'swf': '/public/js/uploadify/uploadify.swf',//swf的相对路径。
+    'swf': '/public/plugins/uploadify/uploadify.swf',//swf的相对路径。
     'uploader': SCOPE.upload_url,////服务器端脚本文件路径。
     'buttonText': '选择图片',//设置按钮文字。
     'debug': false,//开启或关闭debug模式。

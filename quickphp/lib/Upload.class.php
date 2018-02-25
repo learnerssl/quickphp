@@ -215,14 +215,14 @@ class Upload
             $src = $this->uploadPath . '/' . $this->uniName . '.' . $this->ext;
             $this->destination = ROOT . $src;
             if (move_uploaded_file($this->fileInfo['tmp_name'], $this->destination)) {
-                //等比例压缩图片
-                if ($compressImage) {
-                    Image::getInstance($this->destination)->compressImage(310, 45);
-                }
-                //添加文字水印
-                if ($addTextmark) {
-                    Image::getInstance($this->destination)->addTextmark('腾挖网', 20, ROOT . '/public/fonts/simkai.ttf');
-                }
+                //等比例压缩图片(如何实现等比例)
+//                if ($compressImage) {
+//                    Image::getInstance($this->destination)->compressImage(310, 45);
+//                }
+                //添加文字水印(如何实现水印大小等比例)
+//                if ($addTextmark) {
+//                    Image::getInstance($this->destination)->addTextmark('腾挖网', 20, ROOT . '/public/fonts/simkai.ttf');
+//                }
                 return $src;
             } else {
                 $this->error = '文件移动失败';

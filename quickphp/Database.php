@@ -38,13 +38,25 @@ class Database
 
     /**
      * 获取查询列表(此方法不进行分页)
-     * @param null $where
+     * @param array $data
      * @param string $cols
      * @param null $order
      * @return array|null
      */
-    public function get_list($where = null, $cols = '*', $order = null)
+    public function get_list($data = array(), $cols = '*', $order = null)
     {
+        if (!empty($data)) {
+            $where = array();
+            foreach ($data as $key => $item) {
+                $sym = isset($item[2]) ? $item[2] : "=";
+                //in关键字不添加单引号
+                $where[] = $sym === 'in' ? "`" . $item[0] . "` {$sym} {$item[1]}" : "`" . $item[0] . "` {$sym} '{$item[1]}'";
+            }
+            $where = implode(' and ', $where);
+            $where = " where $where";
+        } else {
+            $where = null;
+        }
         if ($order != null) {
             $order = ' order by ' . $order;
         }

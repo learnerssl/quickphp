@@ -88,7 +88,7 @@ class Request
      */
     public static function setToken()
     {
-        $csrf_token = \config::$CSRF;
+        $csrf_token = \config::$skey;
         $csrf = sha1(md5(time() . $csrf_token) . $csrf_token);
         Redis::getInstance()->set('csrf', base64_encode($csrf), 1800);
         return $csrf;

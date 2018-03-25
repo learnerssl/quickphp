@@ -13,33 +13,30 @@ class config
     public static $skey = 'GcLX2pahtqMIfnOxThV5US5hg3OCf7JO';
 
     //域名
-    public static $Domain = '';
-
-    //定义csrf令牌常量
-    public static $CSRF = 'ca969a1bc97732d97b1e88ce8396c216';
+    public static $domain = '';
 
     //MySQL服务器配置
     public static $database_conf = array(
         "dbms" => "mysql",
         "host" => "localhost",
-        "dbname" => "cqtw777",
-        "username" => "root",
-        "password" => "s15213430760",
+        "dbname" => "",
+        "username" => "",
+        "password" => "",
         "charset" => "utf8",
         "port" => 3306,
     );
 
     //微信配置
     public static $wx_conf = array(
-        "AppID" => "wx40a1191e6ea697d6",
-        "AppSecret" => "e5e294d953104d8d3899d8fbb872f88a",
+        "AppID" => "",
+        "AppSecret" => "",
     );
 
     //默认路由
     public static $default_route = array(
-        "model" => "admin",
-        "controller" => "Login",
-        "method" => "login"
+        "model" => "",
+        "controller" => "",
+        "method" => ""
     );
 
     //百度地图ak
@@ -64,10 +61,10 @@ class config
         'prefix' => '',
     );
 
-    //短信配置
+    //短信配置(凌凯短信)
     public static $message = array(
-        'uid' => 'CQLKJ0005302',
-        'passwd' => 'twsw@6688',
+        'uid' => '',
+        'passwd' => '',
     );
 
     //行业短信接口、模板配置

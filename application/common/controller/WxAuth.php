@@ -43,7 +43,7 @@ class WxAuth extends Controller
      */
     public function Auth2($scope = 'snsapi_userinfo', $state = '123')
     {
-        $redirect_uri = "http://" . \config::$Domain . "/index.php/common/WxAuth/getAccessToken";
+        $redirect_uri = "http://" . \config::$domain . "/index.php/common/WxAuth/getAccessToken";
         $data = array(
             'appid' => self::$appId,
             'redirect_uri' => $redirect_uri,

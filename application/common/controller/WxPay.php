@@ -43,7 +43,7 @@ class WxPay extends Controller
         $input->setTimeStart(date("YmdHis"));
         $input->setTimeExpire(date("YmdHis", time() + 600));
         $input->setGoodsTag("QRCode");
-        $input->setNotifyUrl("http://" . \config::$Domain . "/index.php/common/weixinpay/notify");//回调地址
+        $input->setNotifyUrl("http://" . \config::$domain . "/index.php/common/weixinpay/notify");//回调地址
         $input->setTradeType("NATIVE");
         $input->setProductId(1);
         $result = $notify->getPayUrl($input);

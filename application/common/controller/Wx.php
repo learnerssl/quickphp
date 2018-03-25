@@ -127,12 +127,12 @@ class Wx extends Controller
                 array(
                     'name' => '明日头条',
                     'type' => 'view',
-                    'url' => 'http://' . \config::$Domain
+                    'url' => 'http://' . \config::$domain
                 ),
                 array(
                     'name' => '关注公众号',
                     'type' => 'view',
-                    'url' => 'http://' . \config::$Domain . '/index.php/home/Index/subscribe'
+                    'url' => 'http://' . \config::$domain . '/index.php/home/Index/subscribe'
                 )
             )
         );

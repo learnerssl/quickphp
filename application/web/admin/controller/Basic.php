@@ -27,7 +27,7 @@ class Basic extends AdminController
             $post = Request::request('post');
 
             //验证表单提交token
-            $ret = $this->checkToken($post['token']);
+            $ret = Request::checkToken($post['token']);
             $this->check_error($ret);
 
             //清空token

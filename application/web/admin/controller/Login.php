@@ -29,7 +29,7 @@ class Login extends AdminController
             $post = Request::request('post');
 
             //验证表单提交token
-            $ret = $this->checkToken($post['token']);
+            $ret = Request::checkToken($post['token']);
             $this->check_error($ret);
 
             //根据用户名获取用户信息

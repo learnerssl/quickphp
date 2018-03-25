@@ -96,12 +96,12 @@ class Request
 
     /**
      * 验证csrfToken令牌
-     * @param string $csrf
-     * @return bool
+     * @param $csrf
+     * @return array|bool
      */
     public static function checkToken($csrf)
     {
-        return base64_encode($csrf) == Redis::getInstance()->get('csrf') ? true : false;
+        return base64_encode($csrf) == Redis::getInstance()->get('csrf') ? true : \common::output_error(ERR_FORM_AUTHFAILED);
     }
 
     /**

@@ -11,9 +11,7 @@
 //-------------------------
 namespace application\web;
 
-use quickphp\lib\Request;
 use quickphp\lib\Response;
-use quickphp\lib\Session;
 
 class Controller
 {
@@ -70,27 +68,6 @@ class Controller
             return true;
         }
         return false;
-    }
-
-    /**
-     * @desc 验证csrfToken口令
-     * @param $token
-     * @return array|bool
-     */
-    public function checkToken($token)
-    {
-        return Request::checkToken($token) ? true : \common::output_error(ERR_FORM_AUTHFAILED);
-    }
-
-    /**
-     * session 验证
-     * @param string $verify
-     * @param string $key
-     * @return array|bool
-     */
-    public function chechSession($verify, $key)
-    {
-        return Session::getInstance()->checksession($verify, $key) ? true : \common::output_error(ERR_VERITY);
     }
 
     /**

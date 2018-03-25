@@ -17,84 +17,85 @@
  */
 
 namespace quickphp\lib;
-class Session {
-	private static $_instance;
-	
-	private function __construct()
-	{
-		session_start();
-	}
-	
-	private function __clone()
-	{
-		// TODO: Implement __clone() method.
-	}
-	
-	public static function getInstance()
-	{
-		if ( ! self::$_instance ) {
-			self::$_instance = new self();
-		}
-		return self::$_instance;
-	}
-	
-	/**
-	 * 设置seesion
-	 * @param string $key
-	 * @param mixed  $value
-	 * @param bool   $alive 是否设置长久session
-	 * @param int    $expire 有效期，单位秒
-	 */
-	public function setsession( $key, $value, $alive = false, $expire = 0 )
-	{
-		if ( $alive ) {
-			Cookie::getInstance()->setcookie( session_name(), session_id(), array( 'expire' => time() + $expire ) );
-		}
-		$_SESSION[ $key ] = $value;
-	}
-	
-	/**
-	 * 获取session
-	 * @param string $key
-	 * @return null
-	 */
-	public function getsession( $key = '' )
-	{
-		if ( empty( $key ) ) {
-			return $_SESSION;
-		} else {
-			return isset( $_SESSION[ $key ] ) ? $_SESSION[ $key ] : null;
-		}
-	}
-	
-	/**
-	 * 删除session
-	 * @param string $key
-	 */
-	public function delsession( $key = '' )
-	{
-		if ( empty( $key ) ) {
-			// 如果要清理的更彻底，那么同时删除会话 cookie
-			// 注意：这样不但销毁了会话中的数据，还同时销毁了会话本身
-			if ( ini_get( "session.use_cookies" ) ) {
-				$params = session_get_cookie_params();
-				setcookie( session_name(), '', time() - 1, $params["path"], $params["domain"], $params["secure"], $params["httponly"] );
-			}
-			// 最后，销毁会话
-			session_destroy();
-		} else {
-			unset( $_SESSION[ $key ] );
-		}
-	}
-	
-	/**
-	 * session 验证
-	 * @param string $val
-	 * @param string $key
-	 * @return bool
-	 */
-	public function checksession( $val, $key )
-	{
-		return $val == $this->getsession( $key ) ? true : false;
-	}
+class Session
+{
+    private static $_instance;
+
+    private function __construct()
+    {
+        session_start();
+    }
+
+    private function __clone()
+    {
+        // TODO: Implement __clone() method.
+    }
+
+    public static function getInstance()
+    {
+        if (!self::$_instance) {
+            self::$_instance = new self();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * 设置seesion
+     * @param string $key
+     * @param mixed $value
+     * @param bool $alive 是否设置长久session
+     * @param int $expire 有效期，单位秒
+     */
+    public function setsession($key, $value, $alive = false, $expire = 0)
+    {
+        if ($alive) {
+            Cookie::getInstance()->setcookie(session_name(), session_id(), array('expire' => time() + $expire));
+        }
+        $_SESSION[$key] = $value;
+    }
+
+    /**
+     * 获取session
+     * @param string $key
+     * @return null
+     */
+    public function getsession($key = '')
+    {
+        if (empty($key)) {
+            return $_SESSION;
+        } else {
+            return isset($_SESSION[$key]) ? $_SESSION[$key] : null;
+        }
+    }
+
+    /**
+     * 删除session
+     * @param string $key
+     */
+    public function delsession($key = '')
+    {
+        if (empty($key)) {
+            // 如果要清理的更彻底，那么同时删除会话 cookie
+            // 注意：这样不但销毁了会话中的数据，还同时销毁了会话本身
+            if (ini_get("session.use_cookies")) {
+                $params = session_get_cookie_params();
+                setcookie(session_name(), '', time() - 1, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+            }
+            // 最后，销毁会话
+            session_destroy();
+        } else {
+            unset($_SESSION[$key]);
+        }
+    }
+
+    /**
+     * 验证ssession
+     * @param $val
+     * @param $key
+     * @return array|bool
+     */
+    public function checksession($val, $key)
+    {
+        return $val == $this->getsession($key) ? true : \common::output_error(ERR_VERITY);
+    }
 }

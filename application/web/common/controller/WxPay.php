@@ -11,7 +11,7 @@
  * 微信支付类
  */
 
-namespace application\common\WxPayController;
+namespace application\web\common\WxPayController;
 
 use application\web\Controller;
 use wxpay\database\WxPayUnifiedOrder;

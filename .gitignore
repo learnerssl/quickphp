@@ -1,7 +1,6 @@
-/.idea/
+# PhpStorm
+/.idea
+
+# composer
 /vendor
 /composer.lock
-/upload
-/cache
-/system.log
-

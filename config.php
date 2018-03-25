@@ -13,13 +13,10 @@ class config
     public static $skey = 'GcLX2pahtqMIfnOxThV5US5hg3OCf7JO';
 
     //域名
-    public static $Domain = 'www.cqtw777.com';
+    public static $Domain = '';
 
     //定义csrf令牌常量
     public static $CSRF = 'ca969a1bc97732d97b1e88ce8396c216';
-
-    //自动登录Oauth令牌
-    public static $Oauth = '1c1147d6dfd6dd9cda5ab2f44b0186e5';
 
     //MySQL服务器配置
     public static $database_conf = array(

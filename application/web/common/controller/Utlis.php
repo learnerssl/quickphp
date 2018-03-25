@@ -7,7 +7,7 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\web\common\UtlisController;
+namespace application\web\common\controller;
 
 use application\web\Controller;
 use model\sys\Region;

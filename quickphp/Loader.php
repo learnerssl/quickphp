@@ -22,7 +22,7 @@ class Loader
         $direction_dir = APPLICATION . '/' . $direction;
         $module_dir = $direction_dir . '/' . $module;
         $controller_file = $module_dir . '/controller/' . $controller . '.php';
-        $controller_class = '\application\\' . $direction . '\\' . $module . '\controller\\' . $controller . 'Controller';
+        $controller_class = '\application\\' . $direction . '\\' . $module . '\controller\\' . $controller;
         try {
             //方向检查
             if (!is_dir($direction_dir)) {

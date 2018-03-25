@@ -10,7 +10,7 @@
  * 微信公共类
  */
 
-namespace application\web\common\WxController;
+namespace application\web\common\controller;
 
 use application\web\Controller;
 use quickphp\lib\Http;

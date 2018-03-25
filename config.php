@@ -34,7 +34,8 @@ class config
 
     //默认路由
     public static $default_route = array(
-        "model" => "",
+        "direction" => "",
+        "module" => "",
         "controller" => "",
         "method" => ""
     );

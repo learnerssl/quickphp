@@ -7,9 +7,9 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\admin\controller;
+namespace application\web\admin\IndexController;
 
-use application\admin\AdminController;
+use application\web\admin\AdminController;
 
 class Index extends AdminController
 {

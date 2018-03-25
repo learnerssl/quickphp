@@ -7,9 +7,9 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\home;
+namespace application\web\home;
 
-use application\Controller;
+use application\web\Controller;
 
 class HomeController extends Controller
 {

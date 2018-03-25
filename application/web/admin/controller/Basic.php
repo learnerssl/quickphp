@@ -7,9 +7,9 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\admin\controller;
+namespace application\web\admin\BasicController;
 
-use application\admin\AdminController;
+use application\web\admin\AdminController;
 use quickphp\lib\Request;
 use quickphp\lib\Response;
 

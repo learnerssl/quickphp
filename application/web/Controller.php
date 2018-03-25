@@ -9,7 +9,7 @@
 //------------------------
 // QuickPHP 基类控制器
 //-------------------------
-namespace application;
+namespace application\web;
 
 use quickphp\lib\Request;
 use quickphp\lib\Response;

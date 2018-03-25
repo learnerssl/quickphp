@@ -7,9 +7,9 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\Admin;
+namespace application\web\admin;
 
-use application\Controller;
+use application\web\Controller;
 use model\crm\User;
 use quickphp\lib\Redis;
 

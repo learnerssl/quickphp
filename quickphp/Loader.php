@@ -18,24 +18,31 @@ class Loader
      */
     public static function Run($argv)
     {
-        list($model, $controller, $method) = Route::geRoute($argv);
-        $model_dir = APPLICATION . '/' . $model;
-        $controller_file = APPLICATION . '/' . $model . '/controller/' . $controller . '.php';
-        $controller_Class = '\application\\' . $model . '\controller\\' . $controller;
+        list($direction, $module, $controller, $method) = Route::geRoute($argv);
+        $direction_dir = APPLICATION . '/' . $direction;
+        $module_dir = $direction_dir . '/' . $module;
+        $controller_file = $module_dir . '/controller/' . $controller . '.php';
+        $controller_class = '\application\\' . $direction . '\\' . $module . '\controller\\' . $controller . 'Controller';
         try {
-            //模块检查
-            if (!is_dir($model_dir)) {
-                throw  new \Exception($model_dir . '模块不存在');
+            //方向检查
+            if (!is_dir($direction_dir)) {
+                throw  new \Exception($direction_dir . '文件夹不存在');
             }
+            //模块检查
+            if (!is_dir($module_dir)) {
+                throw  new \Exception($module_dir . '文件夹不存在');
+            }
+            //文件检查
             if (!file_exists($controller_file)) {
                 throw  new \Exception($controller_file . '文件不存在');
             }
-            $ins = new $controller_Class();
-            if (!method_exists($ins, $method)) {
-                throw  new \Exception($controller_Class . '\\' . $method . '方法不存在');
+            //方法检查
+            $init = new $controller_class();
+            if (!method_exists($init, $method)) {
+                throw  new \Exception($controller_class . '\\' . $method . '方法不存在');
             }
 
-            return $ins->$method();
+            return $init->$method();
         } catch (\Exception $exception) {
             $error = array(
                 '错误码' => $exception->getCode(),

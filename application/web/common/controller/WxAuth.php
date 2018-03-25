@@ -11,9 +11,9 @@
  * 微信网页授权类
  */
 
-namespace application\common\controller;
+namespace application\common\WxAuthController;
 
-use application\Controller;
+use application\web\Controller;
 use quickphp\lib\Http;
 
 class WxAuth extends Controller

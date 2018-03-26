@@ -19,37 +19,72 @@ class Loader
     public static function Run($argv)
     {
         list($direction, $module, $controller, $method) = Route::geRoute($argv);
-        $direction_dir = APPLICATION . '/' . $direction;
-        $module_dir = $direction_dir . '/' . $module;
-        $controller_file = $module_dir . '/controller/' . $controller . '.php';
-        $controller_class = '\application\\' . $direction . '\\' . $module . '\controller\\' . $controller;
-        try {
-            //方向检查
-            if (!is_dir($direction_dir)) {
-                throw  new \Exception($direction_dir . '文件夹不存在');
-            }
-            //模块检查
-            if (!is_dir($module_dir)) {
-                throw  new \Exception($module_dir . '文件夹不存在');
-            }
-            //文件检查
-            if (!file_exists($controller_file)) {
-                throw  new \Exception($controller_file . '文件不存在');
-            }
-            //方法检查
-            $init = new $controller_class();
-            if (!method_exists($init, $method)) {
-                throw  new \Exception($controller_class . '\\' . $method . '方法不存在');
-            }
+        if ($direction === 'web') {
+            $direction_dir = APPLICATION . '/' . $direction;
+            $module_dir = $direction_dir . '/' . $module;
+            $controller_file = $module_dir . '/controller/' . $controller . '.php';
+            $controller_class = '\application\\' . $direction . '\\' . $module . '\controller\\' . $controller;
+            try {
+                //方向检查
+                if (!is_dir($direction_dir)) {
+                    throw  new \Exception($direction_dir . '文件夹不存在');
+                }
+                //模块检查
+                if (!is_dir($module_dir)) {
+                    throw  new \Exception($module_dir . '文件夹不存在');
+                }
+                //文件检查
+                if (!file_exists($controller_file)) {
+                    throw  new \Exception($controller_file . '文件不存在');
+                }
+                //方法检查
+                $init = new $controller_class();
+                if (!method_exists($init, $method)) {
+                    throw  new \Exception($controller_class . '\\' . $method . '方法不存在');
+                }
 
-            return $init->$method();
-        } catch (\Exception $exception) {
-            $error = array(
-                '错误码' => $exception->getCode(),
-                '错误信息' => $exception->getMessage(),
-                '错误地址' => $exception->getFile() . ' ' . $exception->getLine() . '行',
-            );
-            return \common::output($error);
+                return $init->$method();
+            } catch (\Exception $exception) {
+                $error = array(
+                    '错误码' => $exception->getCode(),
+                    '错误信息' => $exception->getMessage(),
+                    '错误地址' => $exception->getFile() . ' ' . $exception->getLine() . '行',
+                );
+                return \common::output($error);
+            }
+        } else {
+            $direction_dir = APPLICATION . '/' . $direction;
+            $module_dir = $direction_dir . '/' . $module;
+            $controller_file = $module_dir . '/' . $controller . '.php';
+            $controller_class = '\application\\' . $direction . '\\' . $module . '\\' . $controller;
+            try {
+                //方向检查
+                if (!is_dir($direction_dir)) {
+                    throw  new \Exception($direction_dir . '文件夹不存在');
+                }
+                //模块检查
+                if (!is_dir($module_dir)) {
+                    throw  new \Exception($module_dir . '文件夹不存在');
+                }
+                //文件检查
+                if (!file_exists($controller_file)) {
+                    throw  new \Exception($controller_file . '文件不存在');
+                }
+                //方法检查
+                $init = new $controller_class();
+                if (!method_exists($init, $method)) {
+                    throw  new \Exception($controller_class . '\\' . $method . '方法不存在');
+                }
+
+                return $init->$method();
+            } catch (\Exception $exception) {
+                $error = array(
+                    '错误码' => $exception->getCode(),
+                    '错误信息' => $exception->getMessage(),
+                    '错误地址' => $exception->getFile() . ' ' . $exception->getLine() . '行',
+                );
+                return \common::output($error);
+            }
         }
     }
 

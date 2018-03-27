@@ -52,7 +52,7 @@ class api_base
         //组装数据
         $result = [
             'data' => $data,
-            'ecode' => $ecode,
+            'error' => $ecode,
             'etext' => $etext
         ];
         $result = json_encode($result);

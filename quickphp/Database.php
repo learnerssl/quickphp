@@ -242,14 +242,17 @@ class Database
     /**
      * 获取结果集数据
      * @param         $ret
-     * @param  int $resulttype 产生哪种类型的数组 （MYSQLI_ASSOC | MYSQLI_NUM | MYSQLI_BOTH）
+     * @param  Int $resulttype 产生哪种类型的数组 （MYSQLI_ASSOC | MYSQLI_NUM | MYSQLI_BOTH）
      * @return array|null
      */
-    private function get_fetch($ret, $resulttype = MYSQLI_ASSOC)
+    private function get_fetch( $ret, $resulttype = MYSQLI_ASSOC )
     {
-        $rs = mysqli_fetch_all($ret, $resulttype);
-        mysqli_free_result($ret);
-        return $rs;
+        $posts= array();
+        while($row = mysqli_fetch_array($ret,$resulttype)) {
+            $posts[] = $row;
+        }
+        mysqli_free_result( $ret );
+        return $posts;
     }
 
     /**

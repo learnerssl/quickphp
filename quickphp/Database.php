@@ -245,13 +245,13 @@ class Database
      * @param  Int $resulttype 产生哪种类型的数组 （MYSQLI_ASSOC | MYSQLI_NUM | MYSQLI_BOTH）
      * @return array|null
      */
-    private function get_fetch( $ret, $resulttype = MYSQLI_ASSOC )
+    private function get_fetch($ret, $resulttype = MYSQLI_ASSOC)
     {
-        $posts= array();
-        while($row = mysqli_fetch_array($ret,$resulttype)) {
+        $posts = array();
+        while ($row = mysqli_fetch_array($ret, $resulttype)) {
             $posts[] = $row;
         }
-        mysqli_free_result( $ret );
+        mysqli_free_result($ret);
         return $posts;
     }
 

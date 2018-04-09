@@ -47,12 +47,12 @@ class Login extends AdminController
             Request::delToken($post);
 
             //输出
-            Response::api_response(1, '登录成功', array('url' => '/index.php/admin/Index/index'));
+            Response::api_response(1, '登录成功', array('url' => '/index.php/web/admin/Index/index'));
         }
 
         //生成表单验证token
         $this->param['token'] = Request::setToken();
-        return $this->display('admin:Login/index.php', $this->param);
+        return $this->display('web:admin:Login/index.php', $this->param);
     }
 
     /**
@@ -64,7 +64,7 @@ class Login extends AdminController
         Redis::getInstance()->del('user');
 
         //输出
-        \common::redirect('/index.php/admin/Login/index');
+        \common::redirect('/index.php/web/admin/Login/index');
     }
 
     /**
@@ -86,6 +86,6 @@ class Login extends AdminController
      */
     public function register()
     {
-        return $this->display('admin:Login/register.php');
+        return $this->display('web:admin:Login/register.php');
     }
 }

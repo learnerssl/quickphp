@@ -9,7 +9,7 @@
 
 namespace application\web\home;
 
-use application\web\Controller;
+use application\Controller;
 
 class HomeController extends Controller
 {

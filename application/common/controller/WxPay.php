@@ -11,9 +11,9 @@
  * 微信支付类
  */
 
-namespace application\web\common\controller;
+namespace application\common\controller;
 
-use application\web\Controller;
+use application\Controller;
 use wxpay\database\WxPayUnifiedOrder;
 use wxpay\NativePay;
 use wxpay\WxPayConfig;
@@ -48,6 +48,6 @@ class WxPay extends Controller
         $input->setProductId(1);
         $result = $notify->getPayUrl($input);
         $url2 = urlencode($result["code_url"]);//生成二维码
-        return $this->display('home:index/index.php', array('url' => $url2));
+        return $this->display('web:home:index/index.php', array('url' => $url2));
     }
 }

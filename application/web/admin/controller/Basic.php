@@ -38,13 +38,13 @@ class Basic extends AdminController
             $this->check_error($ret);
 
             //输出
-            Response::api_response(1, '操作成功', array('url' => '/index.php/admin/Basic/index'));
+            Response::api_response(1, '操作成功', array('url' => '/index.php/web/admin/Basic/index'));
         }
 
         //生成令牌
         $this->param['token'] = Request::setToken();
         $this->param['basic'] = \model\sys\Basic::given();
-        return $this->display('admin:Basic/index.php', $this->param);
+        return $this->display('web:admin:Basic/index.php', $this->param);
     }
 
     /**

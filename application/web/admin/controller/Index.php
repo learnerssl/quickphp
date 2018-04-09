@@ -21,7 +21,7 @@ class Index extends AdminController
     {
         //检查是否登录
         if ($this->uid) {
-            return $this->display('admin:Index/index.php', $this->param);
+            return $this->display('web:admin:Index/index.php', $this->param);
         }
     }
 
@@ -31,6 +31,6 @@ class Index extends AdminController
      */
     public function home()
     {
-        return $this->display('admin:Index/home.php');
+        return $this->display('web:admin:Index/home.php');
     }
 }

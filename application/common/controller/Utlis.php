@@ -7,9 +7,9 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\web\common\controller;
+namespace application\common\controller;
 
-use application\web\Controller;
+use application\Controller;
 use model\sys\Region;
 use quickphp\lib\Cookie;
 use quickphp\lib\Request;

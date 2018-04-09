@@ -9,7 +9,7 @@
 
 namespace application\web\admin;
 
-use application\web\Controller;
+use application\Controller;
 use model\crm\User;
 use quickphp\lib\Redis;
 

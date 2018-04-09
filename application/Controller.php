@@ -9,7 +9,7 @@
 //------------------------
 // QuickPHP 基类控制器
 //-------------------------
-namespace application\web;
+namespace application;
 
 use quickphp\lib\Response;
 
@@ -28,43 +28,24 @@ class Controller
 
 
     /**
-     * 检查错误
-     * @param             $info
-     * @param bool $error 是否跳转页面 默认为false
-     * @param string|null $message 错误提示信息
-     * @param string|null $url 跳转URL地址
-     * @return mixed
+     * 检查并输出错误信息
+     * @param $info
      */
-    public function check_error($info, $error = false, $message = '', $url = '/')
+    public function check_error($info)
     {
-        //检查是否存在错误信息
-        if ($info['error'] || $info['etext']) {
-            return $error === true ? $this->error($message, $url) : Response::api_response($info['error'], $info['etext']);
+        if (self::is_error($info)) {
+            Response::api_response($info['error'], $info['etext']);
         }
-        return true;
     }
 
     /**
-     * 错误信息展示页面
-     * @param string $message 错误信息
-     * @param string $url 跳转路径
-     * @return mixed
-     */
-    public function error($message = '', $url = '/')
-    {
-        $default_message = empty($message) ? '抱歉，你输入的网址可能不正确，或者该网页不存在。' : $message;
-        $this->display('common:common/error.php', array('message' => $default_message, 'url' => $url));
-        exit;
-    }
-
-    /**
-     * @desc 检查是否存在错误
-     * @param  $info
+     * 检查是否存在错误
+     * @param mixed $info
      * @return bool
      */
-    public function is_error($info)
+    public static function is_error($info)
     {
-        if (($info === false) || (empty($info)) || (is_array($info) && isset($info['error']) && !empty($info['etext']))) {
+        if (is_array($info) && !empty($info['etext'])) {
             return true;
         }
         return false;
@@ -79,7 +60,7 @@ class Controller
     public function display($file, $array = array())
     {
         $path = explode(':', $file);
-        $file = APPLICATION . '/' . $path[0] . '/view/' . $path[1];
+        $file = APPLICATION . '/' . $path[0] . '/' . $path[1] . '/view/' . $path[2];
         try {
             if (is_file($file)) {
                 foreach ($array as $key => $val) {
@@ -109,7 +90,7 @@ class Controller
      * @param string $key 变量名
      * @param string || array $value 变量值
      */
-    public function assign($key, $value)
+    private function assign($key, $value)
     {
         $this->assign[$key] = $value;
     }

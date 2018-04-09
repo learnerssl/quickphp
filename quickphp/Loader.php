@@ -19,7 +19,7 @@ class Loader
     public static function Run($argv)
     {
         list($direction, $module, $controller, $method) = Route::geRoute($argv);
-        if ($direction === 'web') {
+        if ($direction === 'web' || $direction === 'common') {
             $direction_dir = APPLICATION . '/' . $direction;
             $module_dir = $direction_dir . '/' . $module;
             $controller_file = $module_dir . '/controller/' . $controller . '.php';

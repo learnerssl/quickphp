@@ -11,7 +11,7 @@
  * 微信网页授权类
  */
 
-namespace application\common\controller;
+namespace application\common\common\controller;
 
 use application\Controller;
 use quickphp\lib\Http;

@@ -23,7 +23,7 @@ define('PUBLICCSS', PUB . '/css');//定义项目css目录
 define('PUBLICJS', PUB . '/js');//定义项目js目录
 define('PUBLICIMG', PUB . '/img');//定义项目img目录
 define('DEBUG', true);//调试模式
-define('CRONTAB', true); //定时任务脚本
+define('CRONTAB', true); //定时任务
 
 /**
  * 第二步：加载函数库

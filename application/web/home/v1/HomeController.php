@@ -7,7 +7,7 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\web\home;
+namespace application\web\home\v1;
 
 use application\Controller;
 

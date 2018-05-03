@@ -7,7 +7,7 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\web\admin;
+namespace application\web\admin\v1;
 
 use application\Controller;
 use model\crm\User;

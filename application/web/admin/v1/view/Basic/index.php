@@ -145,7 +145,7 @@
 <script src="<?php echo $PUBLICJS; ?>/bootstrap.min.js?v=3.3.6"></script>
 <script src="<?php echo $PUBLICJS; ?>/content.min.js?v=1.0.0"></script>
 <script src="<?php echo $PUBLICJS; ?>/plugins/iCheck/icheck.min.js"></script>
-<?php require_once ROOT . '/application/admin/view/Common/footer.php'; ?>
+<?php require_once ROOT . '/application/web/admin/v1/view/Common/footer.php'; ?>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 </body>
 

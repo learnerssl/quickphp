@@ -11,7 +11,7 @@
  * 微信支付类
  */
 
-namespace application\common\common\controller;
+namespace application\common\common\v1\controller;
 
 use application\Controller;
 use wxpay\database\WxPayUnifiedOrder;
@@ -43,11 +43,11 @@ class WxPay extends Controller
         $input->setTimeStart(date("YmdHis"));
         $input->setTimeExpire(date("YmdHis", time() + 600));
         $input->setGoodsTag("QRCode");
-        $input->setNotifyUrl("http://" . \config::$domain . "/index.php/common/weixinpay/notify");//回调地址
+        $input->setNotifyUrl("http://" . \config::$domain . "/index.php/common/common/v1/WxPay/notify");//回调地址
         $input->setTradeType("NATIVE");
         $input->setProductId(1);
         $result = $notify->getPayUrl($input);
         $url2 = urlencode($result["code_url"]);//生成二维码
-        return $this->display('web:home:index/index.php', array('url' => $url2));
+        return $this->display('web:home:v1:index/index.php', array('url' => $url2));
     }
 }

@@ -29,19 +29,17 @@ class Response {
     ];
 
     public static $allow_origins = [
-        'http://localhost:3000',
-        'http://newsapi.romantic.ren',
     ];
 
     /**
      * @desc 按综合方式输出通信数据
-     * @param  int    $error 状态码  1:请求成功,其余都为请求失败,默认为请求成功
+     * @param  int    $error 状态码   0:请求成功,其余都为请求失败,默认为请求成功
      * @param  string $etext 提示信息
      * @param  mixed  $data 数据
      * @param  string $format 输出格式
      * @return bool
      */
-    public static function api_response( $error = 1, $etext = "", $data = array(), $format = self::FORMAT )
+    public static function api_response( $error = 0, $etext = null, $data = null, $format = self::FORMAT )
     {
         //通行header
         header('Access-Control-Allow-Headers: ' . join(',', self::$allow_headers));
@@ -58,6 +56,7 @@ class Response {
             $etext = "无效的状态码";
         }
         $format = isset( $_GET['format'] ) ? $_GET['format'] : $format;
+        $etext = empty($etext) ? \common::get_text_by_error($error)[1] : $etext;
         if ( $format === 'json' ) {
             self::jsonEncode( $error, $etext, $data );
         } elseif ( $format === 'xml' ) {
@@ -68,7 +67,7 @@ class Response {
 
     /**
      * @desc 按json方式输出通信数据
-     * @param  int    $status 状态码  1:请求成功 0:请求失败
+     * @param  int    $status 状态码
      * @param  string $msg 提示信息
      * @param  array  $data 数据
      * @return string

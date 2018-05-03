@@ -48,7 +48,7 @@
 <script src="<?php echo $PUBLICJS;?>/jquery.min.js?v=2.1.4"></script>
 <script src="<?php echo $PUBLICJS;?>/bootstrap.min.js?v=3.3.6"></script>
 <script src="<?php echo $PUBLICJS;?>/plugins/iCheck/icheck.min.js"></script>
-<?php require_once ROOT . '/application/admin/view/Common/footer.php'; ?>
+<?php require_once ROOT . '/application/web/admin/v1/view/Common/footer.php'; ?>
 <script>
     $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
 </script>

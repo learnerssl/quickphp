@@ -36,6 +36,7 @@ class config
     public static $default_route = array(
         "direction" => "",
         "module" => "",
+        "version" => "",
         "controller" => "",
         "method" => ""
     );

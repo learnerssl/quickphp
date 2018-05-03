@@ -111,6 +111,18 @@ EOF;
     }
 
     /**
+     * 提取数组的值(map数组)
+     * @param array $array 数组
+     * @param string $key 键
+     * @param null $dft 默认值
+     * @return null
+     */
+    public static function array_get($array, $key, $dft = null)
+    {
+        return isset($array[$key]) ? $array[$key] : $dft;
+    }
+
+    /**
      * 过滤防范
      * @param string $str 需要过滤的文本
      * @return string
@@ -829,33 +841,6 @@ EOF;
     }
 
     /**
-     * 生成数据签名
-     * @param array $data 数据
-     * @param string $key 加密key
-     * @return string 数据的签名
-     */
-    public static function get_data_sign($data, $key)
-    {
-        //字典序排列数组
-        ksort($data);
-
-        //以&符号拼接非空数据，并补上api_key
-        $arr = array();
-        foreach ($data as $_key => $_item) {
-            //如果参数值为空，此处不能使用empty，因为参数值为0也需要参与签名
-            if ($_item === null || $_item === '') {
-                continue;
-            }
-            $arr[] = "$_key=$_item";
-        }
-        $str = implode('&', $arr) . $key;
-        $sign = strtolower(md5($str));
-
-        //返回
-        return $sign;
-    }
-
-    /**
      * 获取随机码
      * @param int $len
      * @param int $type 0:数字字母组合, 1:纯数字，2：纯字母
@@ -941,34 +926,5 @@ EOF;
     {
         $encoding = 'UTF-8';
         return mb_substr($str, $start, $length, $encoding);
-    }
-
-    /**
-     * 组装scheme信息
-     * @param string $protocol scheme协议
-     * @param string $path scheme路径
-     * @param array $query scheme参数
-     * @return string
-     */
-    public static function scheme_encode($protocol, $path, $query = array())
-    {
-        //参数检查
-        if (empty($protocol) || empty($path)) {
-            return '';
-        }
-
-        //组装参数
-        $query_str = null;
-        $query_arr = array();
-        foreach ($query as $key => $item) {
-            $query_arr[] = "$key=$item";
-        }
-        $query_str = implode('&', $query_arr);
-
-        //组装scheme
-        $scheme = "{$protocol}://router{$path}?{$query_str}";
-
-        //返回
-        return $scheme;
     }
 }

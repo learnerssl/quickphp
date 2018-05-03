@@ -7,9 +7,9 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\web\admin\controller;
+namespace application\web\admin\v1\controller;
 
-use application\web\admin\AdminController;
+use application\web\admin\v1\AdminController;
 use quickphp\lib\Request;
 use quickphp\lib\Response;
 
@@ -38,13 +38,13 @@ class Basic extends AdminController
             $this->check_error($ret);
 
             //输出
-            Response::api_response(1, '操作成功', array('url' => '/index.php/web/admin/Basic/index'));
+            Response::api_response(1, '操作成功', array('url' => '/index.php/web/admin/v1/Basic/index'));
         }
 
         //生成令牌
         $this->param['token'] = Request::setToken();
         $this->param['basic'] = \model\sys\Basic::given();
-        return $this->display('web:admin:Basic/index.php', $this->param);
+        return $this->display('web:admin:v1:Basic/index.php', $this->param);
     }
 
     /**

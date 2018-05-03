@@ -7,9 +7,9 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\web\admin\controller;
+namespace application\web\admin\v1\controller;
 
-use application\web\admin\AdminController;
+use application\web\admin\v1\AdminController;
 
 class Index extends AdminController
 {
@@ -21,7 +21,7 @@ class Index extends AdminController
     {
         //检查是否登录
         if ($this->uid) {
-            return $this->display('web:admin:Index/index.php', $this->param);
+            return $this->display('web:admin:v1:Index/index.php', $this->param);
         }
     }
 
@@ -31,6 +31,6 @@ class Index extends AdminController
      */
     public function home()
     {
-        return $this->display('web:admin:Index/home.php');
+        return $this->display('web:admin:v1:Index/home.php');
     }
 }

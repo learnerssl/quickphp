@@ -7,7 +7,7 @@
  * describe: Fill in the description of the document here
  */
 
-namespace application\common\common\controller;
+namespace application\common\common\v1\controller;
 
 use application\Controller;
 use model\sys\Region;

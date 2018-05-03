@@ -47,6 +47,6 @@
 <script src="<?php echo $PUBLICJS; ?>/jquery.min.js?v=2.1.4"></script>
 <script src="<?php echo $PUBLICJS; ?>/bootstrap.min.js?v=3.3.6"></script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
-<?php require_once ROOT . '/application/admin/view/Common/footer.php'; ?>
+<?php require_once ROOT . '/application/web/admin/v1/view/Common/footer.php'; ?>
 </body>
 </html>

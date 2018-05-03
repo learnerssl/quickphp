@@ -60,7 +60,7 @@ class Controller
     public function display($file, $array = array())
     {
         $path = explode(':', $file);
-        $file = APPLICATION . '/' . $path[0] . '/' . $path[1] . '/view/' . $path[2];
+        $file = APPLICATION . '/' . $path[0] . '/' . $path[1] . '/' . $path[2] . '/view/' . $path[3];
         try {
             if (is_file($file)) {
                 foreach ($array as $key => $val) {

@@ -44,7 +44,7 @@ class Utlis extends Controller
         $data = array('id' => $id, 'src' => $ret);
 
         //返回
-        Response::api_response(1, '上传成功', $data);
+        Response::api_response(0, '上传成功', $data);
     }
 
     /**
@@ -79,9 +79,9 @@ class Utlis extends Controller
             $id = Request::request('post', 'id');
 
             $list = Region::getInstance()->get_list_by_prt($id);
-            Response::api_response(1, '请求成功', array('data' => $list));
+            Response::api_response(0, '请求成功', array('data' => $list));
         }
-        return Response::api_response(ERR_REQUEST_METHOD, \common::get_text_by_error(ERR_REQUEST_METHOD)[1]);
+        return Response::api_response(ERR_REQUEST_METHOD);
     }
 
     /**
@@ -116,8 +116,8 @@ class Utlis extends Controller
             Cookie::getInstance()->setcookie($name, $value, $option);
 
             //返回
-            Response::api_response(1, '请求成功!');
+            Response::api_response(0, '请求成功!');
         }
-        return Response::api_response(ERR_REQUEST_METHOD, \common::get_text_by_error(ERR_REQUEST_METHOD)[1]);
+        return Response::api_response(ERR_REQUEST_METHOD);
     }
 }

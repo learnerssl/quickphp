@@ -15,7 +15,7 @@ let request = {
 
         //发送ajax请求
         $.post(url, data, function (result) {
-            if (result.error === 1) {
+            if (result.error === 0) {
                 //如果存在回调函数，则执行
                 if (typeof callback === 'function') callback();
                 return dialog.success(result.etext, result.data.url);
@@ -99,7 +99,7 @@ let request = {
 
         function exec(url, data, tid, callback, dom) {
             $.post(url, data, function (result) {
-                if (result.error === 1) {
+                if (result.error === 0) {
                     if (typeof callback === 'function') callback(dom);
                     switch (tid) {
                         case 1:

@@ -40,7 +40,7 @@ function multiple_upload(ids = ['imgs'], compressImage = false, addTextmark = fa
                 //file 已成功上传的文件对象信息(类似于php $_FILES)
                 //data 由服务器端脚本返回的数据(接口json返回格式数据）
                 let ret = JSON.parse(data); //由JSON字符串转换为JSON对象
-                if (ret.error === 1) {
+                if (ret.error === 0) {
                     //普通字符串处理
                     $('.uploadify-button-text').html(' 上传完毕');
 
@@ -84,7 +84,7 @@ function upload(id = 'img', compressImage = false, addTextmark = false) {
             //file 已成功上传的文件对象信息(类似于php $_FILES)
             //data 由服务器端脚本返回的数据(接口json返回格式数据）
             let ret = JSON.parse(data); //由JSON字符串转换为JSON对象
-            if (ret.error === 1) {
+            if (ret.error === 0) {
                 //普通字符串处理
                 $('.uploadify-button-text').html(' 上传完毕');
 

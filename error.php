@@ -28,3 +28,5 @@ define('ERR_TICKET_DISABLED', 17);  //对不起，您的登录状态已失效。
 define('ERR_REFRESH_TICKET_DISABLED', 18);  //对不起，用户的刷新票据失效。
 define('ERR_REQUEST_METHOD', 19);  //对不起，错误的http请求方式。
 define('ERR_VERITY', 20);  //对不起，验证码错误。
+define('ERR_LOGIN', 21);  //对不起，此操作需要登录。
+define('ERR_UNKNOWN', 22);  //对不起，未知操作类型

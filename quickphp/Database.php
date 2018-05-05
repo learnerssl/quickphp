@@ -12,8 +12,8 @@ use quickphp\lib\Response;
 
 class Database
 {
-    var $table;
-    var $pkey;
+    public $table;
+    public $pkey;
     private $auto_commit = true;
     private static $_link;
     private static $_config;
@@ -31,36 +31,43 @@ class Database
                 }
                 mysqli_set_charset(self::$_link, self::$_config['charset']);
             } catch (\Exception $e) {
-                Response::api_response(0, $e->getMessage());
+                Response::api_response($e->getCode(), $e->getMessage());
             }
         }
     }
 
     /**
      * 获取查询列表(此方法不进行分页)
-     * @param array $data
-     * @param string $cols
+     * @param array $data 如:$data[] = array('username', $username,'=');
+     * @param string $col
      * @param null $order
      * @return array|null
      */
-    public function get_list($data = array(), $cols = '*', $order = null)
+    public function get_list($data = array(), $col = '*', $order = null)
     {
+        $where = null;
         if (!empty($data)) {
             $where = array();
             foreach ($data as $key => $item) {
                 $sym = isset($item[2]) ? $item[2] : "=";
                 //in关键字不添加单引号
-                $where[] = $sym === 'in' ? "`" . $item[0] . "` {$sym} {$item[1]}" : "`" . $item[0] . "` {$sym} '{$item[1]}'";
+                $where[] = $sym === 'in' ? "`" . $item[0] . "` {$sym} ({$item[1]})" : "`" . $item[0] . "` {$sym} '{$item[1]}'";
             }
             $where = implode(' and ', $where);
             $where = " where $where";
-        } else {
-            $where = null;
+        }
+        if ($col != '*') {
+            $cols = explode(',', $col);
+            $ncols = array();
+            foreach ($cols as $key => $items) {
+                $ncols[] = "`{$items}`";
+            }
+            $col = implode(',', $ncols);
         }
         if ($order != null) {
             $order = ' order by ' . $order;
         }
-        $sql = "select $cols from `" . $this->table . "` $where $order";
+        $sql = "select $col from `" . $this->table . "` $where $order";
         $ret = mysqli_query(self::$_link, $sql);
         $this->get_debug();
         $row = $this->get_fetch($ret);
@@ -74,7 +81,7 @@ class Database
      * @param bool $for 是否需要添加行锁
      * @return mixed
      */
-    public function get_one_date_by_pkey($pkey, $col = '*', $for = false)
+    public function get_one_data_by_pkey($pkey, $col = '*', $for = false)
     {
         if ($col != '*') {
             $cols = explode(',', $col);
@@ -96,23 +103,23 @@ class Database
 
     /**
      * 获取单条数据
-     * @param array $data
+     * @param array $data 如:$data[] = array('username', $username,'=');
      * @param string $col
      * @param string|null $order
      * @return mixed
      */
     public function get_one_data_by_array($data, $col = '*', $order = null)
     {
+        $where = null;
         if (!empty($data)) {
             $where = array();
             foreach ($data as $key => $item) {
                 $sym = isset($item[2]) ? $item[2] : "=";
-                $where[] = "`" . $item[0] . "` {$sym}'{$item[1]}'";
+                //in关键字不添加单引号
+                $where[] = $sym === 'in' ? "`" . $item[0] . "` {$sym} ({$item[1]})" : "`" . $item[0] . "` {$sym} '{$item[1]}'";
             }
             $where = implode(' and ', $where);
             $where = " where $where";
-        } else {
-            $where = null;
         }
         if ($col != '*') {
             $cols = explode(',', $col);
@@ -123,7 +130,7 @@ class Database
             $col = implode(',', $ncols);
         }
         if ($order != null) {
-            $order = " order by {$order}";
+            $order = ' order by ' . $order;
         }
         $sql = "select $col from `" . $this->table . "` $where $order limit 1";
         $ret = mysqli_query(self::$_link, $sql);
@@ -142,22 +149,18 @@ class Database
      * @param int $limit
      * @return array|null
      */
-    public function get_data_by_array($data, &$count = 0, $col = '*', $order = null, $idx = 1, $limit = 10)
+    public function get_data_by_array($data, &$count = 0, $col = '*', $order = null, $idx = 1, $limit = 15)
     {
+        $where = null;
         if (!empty($data)) {
             $where = array();
             foreach ($data as $key => $item) {
                 $sym = isset($item[2]) ? $item[2] : "=";
                 //in关键字不添加单引号
-                $where[] = $sym === 'in' ? "`" . $item[0] . "` {$sym} {$item[1]}" : "`" . $item[0] . "` {$sym} '{$item[1]}'";
+                $where[] = $sym === 'in' ? "`" . $item[0] . "` {$sym} ({$item[1]})" : "`" . $item[0] . "` {$sym} '{$item[1]}'";
             }
             $where = implode(' and ', $where);
             $where = " where $where";
-        } else {
-            $where = null;
-        }
-        if ($order != null) {
-            $order = " order by {$order}";
         }
         if ($col != '*') {
             $cols = explode(',', $col);
@@ -166,6 +169,9 @@ class Database
                 $ncols[] = "`{$items}`";
             }
             $col = implode(',', $ncols);
+        }
+        if ($order != null) {
+            $order = ' order by ' . $order;
         }
         $limit = $limit > 0 ? " limit " . ($idx - 1) * $limit . "," . $limit : null;
         $sql = "select $col from `" . $this->table . "`  $where $order $limit";
@@ -181,13 +187,18 @@ class Database
     /**
      * 根据主键ID修改单条数据
      * @param int $pkey 主键ID
-     * @param array $post 条件关联数组
+     * @param array $datas 条件关联数组
+     * 如:
+     * $data = array(
+     * 'uname' => XXX,
+     * 'mobile' => XXX,
+     * );
      * @return bool
      */
-    public function update_by_key($pkey, $post)
+    public function update_by_key($pkey, $datas)
     {
         $data = null;
-        foreach ($post as $key => $item) {
+        foreach ($datas as $key => $item) {
             $data .= "`{$key}` = '{$item}',";
         }
         $data = substr($data, 0, strlen($data) - 1);
@@ -220,9 +231,14 @@ class Database
     /**
      * 增加一条数据
      * @param array $data
+     * 如:
+     * $data = array(
+     * 'uname' => XXX,
+     * 'mobile' => XXX,
+     * );
      * @return int|string
      */
-    public function insert(array $data)
+    public function insert($data)
     {
         $cols = null;
         $value = null;
@@ -269,6 +285,16 @@ class Database
     }
 
     /**
+     * 获取受影响记录数
+     * @return int
+     */
+    private function get_affected_rows()
+    {
+        $rows = mysqli_affected_rows(self::$_link);
+        return $rows;
+    }
+
+    /**
      * 执行原生sql语句
      * @param $sql
      * @param $model
@@ -293,13 +319,13 @@ class Database
                 $data = $this->get_fetch($ret);
                 break;
             default:
-                return Response::api_response(0, '未知操作类型');
+                return Response::api_response(ERR_UNKNOWN);
         }
         return $data;
     }
 
     /**
-     * 执行预处理语句
+     * 执行预处理语句w
      * @param string $sql 预处理语句
      * @param string $types 字符串类型  i:整形 s:字符型 f:浮点型
      * @param array $data 索引数组  如:$data = array('admin','123456');
@@ -326,7 +352,6 @@ class Database
                 case 'delete':
                     break;
                 default:
-
             }
         } else {
             if (DEBUG && $mysqli_stmt->errno) {
@@ -335,16 +360,6 @@ class Database
         }
         $mysqli_stmt->free_result();
         return $mysqli_stmt->close();
-    }
-
-    /**
-     * 获取受影响记录数
-     * @return int
-     */
-    public function get_affected_rows()
-    {
-        $rows = mysqli_affected_rows(self::$_link);
-        return $rows;
     }
 
     /**

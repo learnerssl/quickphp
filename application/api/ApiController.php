@@ -3,10 +3,15 @@
 namespace application\api;
 
 use application\Controller;
+use model\user\Ticket;
+use quickphp\lib\Redis;
+use quickphp\lib\Request;
 use quickphp\lib\Response;
 
 class ApiController extends Controller
 {
+    public $user_info = null;
+
     public function __construct()
     {
         parent::__construct();
@@ -14,9 +19,12 @@ class ApiController extends Controller
         //请求方式
         $req_method = strtoupper($_SERVER['REQUEST_METHOD']);
 
+        //获取登录票据
+        $ticket = Request::request('GET', 'ticket');
+
         //处理请求数据、检查签名
         if ($req_method == 'OPTIONS') {
-            Response::api_response(0, null);
+            Response::api_response(0);
         } elseif ($req_method == 'GET') {
             //检查签名
             $this->check_sign($_GET);
@@ -31,6 +39,33 @@ class ApiController extends Controller
             //检查签名
             $this->check_sign($_POST);
         }
+
+        //获取用户数据
+        $user_info = null;
+        if (!empty($ticket)) {
+            //取出缓存的登录信息
+            $redis_key = 'api_user_info' . md5($ticket);
+            $user_info = Redis::getInstance()->get($redis_key);
+
+            //检查缓存中是否有数据
+            if (empty($user_info)) {
+                //获取票据信息
+                $ticket_info = Ticket::getInstance()->get_info_by_ticket($ticket);
+                $this->check_error($ticket_info);
+
+                //缓存用户信息（缓存12小时）
+                Redis::getInstance()->set($redis_key, $user_info, 43200);
+            }
+        }
+
+        //检查是否需要登录
+        if (!empty($ticket) && empty($user_info)) {
+            Response::api_response(ERR_LOGIN);
+        }
+
+        //记录信息
+        $this->user_info = $user_info;
+        $this->uid = isset($user_info['uid']) ? $user_info['uid'] : 0;
     }
 
     /**

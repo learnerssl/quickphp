@@ -38,7 +38,7 @@ class Basic extends AdminController
             $this->check_error($ret);
 
             //输出
-            Response::api_response(1, '操作成功', array('url' => '/index.php/web/admin/v1/Basic/index'));
+            Response::api_response(0, '操作成功', array('url' => '/index.php/web/admin/v1/Basic/index'));
         }
 
         //生成令牌

@@ -33,6 +33,8 @@ class data
         array('id' => ERR_TICKET_DISABLED, 'text' => '对不起，您的登录状态已失效。'),
         array('id' => ERR_REFRESH_TICKET_DISABLED, 'text' => '对不起，用户的刷新票据失效。'),
         array('id' => ERR_REQUEST_METHOD, 'text' => '对不起，错误的http请求方式。'),
-        array('id' => ERR_VERITY, 'text' => '对不起，验证码错误。')
+        array('id' => ERR_VERITY, 'text' => '对不起，验证码错误。'),
+        array('id' => ERR_LOGIN, 'text' => '对不起，此操作需要登录。'),
+        array('id' => ERR_UNKNOWN, 'text' => '对不起，未知操作类型。')
     );
 }

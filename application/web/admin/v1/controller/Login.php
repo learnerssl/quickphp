@@ -47,7 +47,7 @@ class Login extends AdminController
             Request::delToken($post);
 
             //输出
-            Response::api_response(1, '登录成功', array('url' => '/index.php/web/admin/v1/Index/index'));
+            Response::api_response(0, '登录成功', array('url' => '/index.php/web/admin/v1/Index/index'));
         }
 
         //生成表单验证token

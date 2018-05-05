@@ -181,7 +181,7 @@ EOF;
      * @param string $delimiter 分割字符串
      * @return string  处理后的字符串
      */
-    public function add_quotes($string, $delimiter = ',')
+    public static function add_quotes($string, $delimiter = ',')
     {
         $str = explode($delimiter, $string);
         $string = array();
@@ -192,6 +192,41 @@ EOF;
         return $data;
     }
 
+    /**
+     * 根据数组输出子，至少2个参数 callback, list, arg1, arg2
+     * @return array
+     */
+    public static function array_map()
+    {
+        $tmp = array();
+        $num = func_num_args();
+        if ($num < 2) {
+            return $tmp;
+        }
+
+        $args = func_get_args();
+        $fun = $args[0];
+        $list = $args[1];
+
+        if ($num == 2) {
+            foreach ($list as $item) {
+                $ret = call_user_func($fun, $item);
+                if ($ret !== null) {
+                    $tmp[] = $ret;
+                }
+            }
+        } else if ($num > 2) {
+            $inputs = array_slice($args, 2);
+            foreach ($list as $item) {
+                $arrs = array_merge(array($item), $inputs);
+                $ret = call_user_func_array($fun, $arrs);
+                if ($ret !== null) {
+                    $tmp[] = $ret;
+                }
+            }
+        }
+        return $tmp;
+    }
 
     /**
      * 返回二维数组中某个单一列的值。
@@ -405,28 +440,28 @@ EOF;
 
     /**
      * 把array转化为json字符串格式
-     * @param $json
+     * @param $array
      * @return string
      */
-    public static function array_to_json($json)
+    public static function array_to_json($array)
     {
-        if (empty($json)) {
+        if (empty($array)) {
             return '{}';
         }
-        return json_encode($json, JSON_UNESCAPED_UNICODE);
+        return json_encode($array, JSON_UNESCAPED_UNICODE);
     }
 
     /**
      * 把json字符串格式转化为array
-     * @param string $array
+     * @param string $json
      * @return array|mixed
      */
-    public static function json_to_array($array)
+    public static function json_to_array($json)
     {
-        if (empty($array)) {
+        if (empty($json)) {
             return array();
         }
-        return json_decode($array, true);
+        return json_decode($json, true);
     }
 
     /**

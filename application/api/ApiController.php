@@ -3,6 +3,7 @@
 namespace application\api;
 
 use application\Controller;
+use model\sys\User;
 use model\user\Ticket;
 use quickphp\lib\Redis;
 use quickphp\lib\Request;
@@ -20,7 +21,7 @@ class ApiController extends Controller
         $req_method = strtoupper($_SERVER['REQUEST_METHOD']);
 
         //获取登录票据
-        $ticket = Request::request('GET', 'ticket');
+        $ticket = Request::request('GET', 'ket');
 
         //处理请求数据、检查签名
         if ($req_method == 'OPTIONS') {
@@ -52,6 +53,9 @@ class ApiController extends Controller
                 //获取票据信息
                 $ticket_info = Ticket::getInstance()->get_info_by_ticket($ticket);
                 $this->check_error($ticket_info);
+
+                //获取用户信息
+                $user_info = User::getInstance()->get_info_by_uid($ticket_info['uid']);
 
                 //缓存用户信息（缓存12小时）
                 Redis::getInstance()->set($redis_key, $user_info, 43200);
@@ -86,8 +90,9 @@ class ApiController extends Controller
             Response::api_response(ERR_SIGN_EXCEPTION);
         }
 
-        //剔除sign
+        //剔除sign、ket
         unset($data['sign']);
+        unset($data['ket']);
 
         //生成签名
         $_sign = $this->get_data_sign($data, \config::$skey);
@@ -114,6 +119,8 @@ class ApiController extends Controller
         foreach ($data as $_key => $_item) {
             //如果参数值为空，此处不能使用empty，因为参数值为0也需要参与签名
             if ($_item === null || $_item === '') {
+                continue;
+            } else if (gettype($_item) === 'array') {
                 continue;
             }
             $arr[] = "$_key=$_item";

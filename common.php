@@ -446,7 +446,7 @@ EOF;
     public static function array_to_json($array)
     {
         if (empty($array)) {
-            return '{}';
+            return null;
         }
         return json_encode($array, JSON_UNESCAPED_UNICODE);
     }
@@ -459,7 +459,7 @@ EOF;
     public static function json_to_array($json)
     {
         if (empty($json)) {
-            return array();
+            return null;
         }
         return json_decode($json, true);
     }

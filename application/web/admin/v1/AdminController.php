@@ -15,6 +15,9 @@ use quickphp\lib\Redis;
 
 class AdminController extends Controller
 {
+    protected $uid;
+    protected $param;
+
     public function __construct()
     {
         parent::__construct();

@@ -18,8 +18,9 @@
     }
   ],
   "require": {
-    "php": ">=5.4",
-    "filp/whoops": "*"
+    "php": ">=7.0",
+    "filp/whoops": "*",
+    "symfony/var-dumper": "*"
   },
   "repositories": {
     "packagist": {

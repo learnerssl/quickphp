@@ -34,11 +34,11 @@ class config
 
     //默认路由
     public static $default_route = array(
-        "direction" => "",
-        "module" => "",
-        "version" => "",
-        "controller" => "",
-        "method" => ""
+        "direction" => "web",
+        "module" => "home",
+        "version" => "v1",
+        "controller" => "index",
+        "method" => "index"
     );
 
     //百度地图ak

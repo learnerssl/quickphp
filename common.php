@@ -12,6 +12,17 @@
 class common
 {
     /**
+     * 返回参数值(如果不存在，则返回默认值)
+     * @param string $param
+     * @param mixed $dft
+     * @return string
+     */
+    public static function get_default_value($param, $dft = '')
+    {
+        return (!empty($param) && isset($param)) ? $param : $dft;
+    }
+
+    /**
      * 打印信息
      * @param mixed $var
      * @return bool
@@ -111,15 +122,15 @@ EOF;
     }
 
     /**
-     * 提取数组的值(map数组)
-     * @param array $array 数组
-     * @param string $key 键
-     * @param null $dft 默认值
+     * 获取数组中某个键名的所有值
+     * @param      $array
+     * @param      $key
+     * @param null $dft
      * @return null
      */
-    public static function array_get($array, $key, $dft = null)
+    public static function get_array_values_by_key($array, $key, $dft = null)
     {
-        return isset($array[$key]) ? $array[$key] : $dft;
+        return (isset($array[$key]) && !empty($array[$key])) ? $array[$key] : $dft;
     }
 
     /**
@@ -173,23 +184,6 @@ EOF;
         $html = self::html_filter($html);
         $html = self::html_encode($html, $opt);
         return $html;
-    }
-
-    /**
-     * 添加引号
-     * @param string $string 需要分割的字符串 如:1,2,3 => '1','2','3'
-     * @param string $delimiter 分割字符串
-     * @return string  处理后的字符串
-     */
-    public static function add_quotes($string, $delimiter = ',')
-    {
-        $str = explode($delimiter, $string);
-        $string = array();
-        foreach ($str as $key => $val) {
-            $string[$key] = "'" . $val . "'";
-        }
-        $data = implode(',', $string);
-        return $data;
     }
 
     /**
@@ -382,18 +376,6 @@ EOF;
     }
 
     /**
-     * 获取数组中某个键名的所有值
-     * @param      $array
-     * @param      $key
-     * @param null $dft
-     * @return null
-     */
-    public static function get_array_values_by_key($array, $key, $dft = null)
-    {
-        return (isset($array[$key]) && !empty($array[$key])) ? $array[$key] : $dft;
-    }
-
-    /**
      * 获取硬编码text
      * @param array $array
      * @param int $id
@@ -420,22 +402,6 @@ EOF;
     public static function format_date($time = 'default', $format = 'Y-m-d H:i:s')
     {
         return $time == 'default' ? date($format, time()) : date($format, $time);
-    }
-
-    /**
-     * 数组转化为拼接后的字符串 如：array(1,2,3) => '1','2','3'
-     * @param array $data 数组
-     * @param string $delimiter 连接字符串
-     * @return bool|string
-     */
-    public static function array_to_str($data, $delimiter = ',')
-    {
-        $ids = '';
-        foreach ($data as $key => $val) {
-            $ids .= "'" . $val . "'" . "$delimiter";
-        }
-        $ids = substr($ids, 0, strlen($ids) - 1);
-        return $ids;
     }
 
     /**
@@ -498,23 +464,6 @@ EOF;
             return $default;
         }
         return $tmp;
-    }
-
-    /**
-     * 检查一维的数组里面是否含有指定的值
-     * @param $val string 待检查的值
-     * @param $array array 检查对象
-     * @param $key string 键名
-     * @return bool
-     */
-    public static function in_1d_array($val, $array, $key)
-    {
-        foreach ($array as $value) {
-            if ($value[$key] == $val) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

@@ -35,11 +35,11 @@ class Response {
      * @desc 按综合方式输出通信数据
      * @param  int    $error 状态码   0:请求成功,其余都为请求失败,默认为请求成功
      * @param  string $etext 提示信息
-     * @param  mixed  $data 数据
+     * @param  array  $data 数据
      * @param  string $format 输出格式
      * @return bool
      */
-    public static function api_response( $error = 0, $etext = null, $data = null, $format = self::FORMAT )
+    public static function api_response( $error = 0, $etext = '', $data = [], $format = self::FORMAT )
     {
         //通行header
         header('Access-Control-Allow-Headers: ' . join(',', self::$allow_headers));

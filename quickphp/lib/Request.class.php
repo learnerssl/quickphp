@@ -57,7 +57,7 @@ class Request
             if (is_array($data)) {
                 return self::html_xss_by_array($data, $default);
             } else {
-                return (!empty($data) && isset($data)) ? \common::html_xss($data) : $default;
+                return \common::html_xss(\common::get_default_value($data, $default));
             }
         }
     }
@@ -73,7 +73,7 @@ class Request
         unset($data['s']);
         foreach ($data as $key => $item) {
             if (!is_array($item)) {
-                $data[$key] = (!empty($item) && isset($item)) ? \common::html_xss($item) : $default;
+                $data[$key] = \common::html_xss(\common::get_default_value($item, $default));
             } else {
                 //多维数组进行递归操作
                 self::html_xss_by_array($item, $default);

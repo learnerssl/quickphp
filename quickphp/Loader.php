@@ -99,7 +99,7 @@ class Loader
 
     /**
      * 自动加载类
-     * @param        $class string 待加载类命名空间路径
+     * @param    $class string 待加载类命名空间路径
      * @des 正常实例化类：new quickphp\Route();
      *      那么由于未引入文件，将会自动加载类，其中$class：quickphp\Route()；
      *      替换成为文件路径 ROOT.'/quickphp/Route.php;

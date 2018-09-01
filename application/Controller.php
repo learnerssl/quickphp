@@ -15,9 +15,6 @@ use quickphp\lib\Response;
 
 class Controller
 {
-    protected $uid;
-    protected $mobile;
-    protected $param;
     private $assign = array();
 
     public function __construct()
@@ -66,9 +63,6 @@ class Controller
                 foreach ($array as $key => $val) {
                     $this->assign($key, $val);
                 }
-                $this->assign('PUBLICCSS', PUBLICCSS);
-                $this->assign('PUBLICJS', PUBLICJS);
-                $this->assign('PUBLICIMG', PUBLICIMG);
                 extract($this->assign);
                 include_once $file;
             } else {
@@ -90,7 +84,7 @@ class Controller
      * @param string $key 变量名
      * @param string || array $value 变量值
      */
-    private function assign($key, $value)
+    protected function assign($key, $value)
     {
         $this->assign[$key] = $value;
     }

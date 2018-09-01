@@ -6,10 +6,10 @@ header("Content-type: text/html; charset=utf-8");
 ini_set('date.timezone', 'PRC');
 
 /**
- * 判断PHP版本必须在5.4以上
+ * 判断PHP版本必须在7.0以上
  */
-if (version_compare(PHP_VERSION, '5.4', '<')) {
-    throw new \RuntimeException('require PHP > 5.4 !');
+if (version_compare(PHP_VERSION, '7.0', '<')) {
+    throw new \RuntimeException('require PHP > 7.0 !');
 }
 
 /**
@@ -19,9 +19,6 @@ define('ROOT', dirname(__FILE__)); //定义当前框架所在的根目录
 define('QUICKPHP', ROOT . '/quickphp');//定义框架的核心文件所处的目录
 define('APPLICATION', ROOT . '/application');//定义项目根目录
 define('PUB', '/public');//定义项目资源目录
-define('PUBLICCSS', PUB . '/css');//定义项目css目录
-define('PUBLICJS', PUB . '/js');//定义项目js目录
-define('PUBLICIMG', PUB . '/img');//定义项目img目录
 define('DEBUG', true);//调试模式
 define('CRONTAB', true); //定时任务
 

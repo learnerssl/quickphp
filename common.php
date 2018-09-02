@@ -49,8 +49,8 @@ class common
     {
         //检查错误
         list($ecode, $etext) = self::get_text_by_error($error);
-        if ($ecode === -1 && $error !== null) {
-            $ecode = -1;
+        if ($ecode === ERR_ERROR_CODE && $error !== null) {
+            $ecode = ERR_ERROR_CODE;
             $etext = $error;
         }
 
@@ -68,8 +68,8 @@ class common
      */
     public static function get_text_by_error($error)
     {
-        //想要的值
-        $ecode = -1;
+        //初始化
+        $ecode = ERR_ERROR_CODE;
         $etext = null;
 
         //参数处理
@@ -80,25 +80,6 @@ class common
 
         //返回
         return array($ecode, $etext);
-    }
-
-    /**
-     * 手动抛出错日信息
-     * @param string $message 错误信息
-     * @param string $line 错误文件
-     * @param int $file 错误行号
-     * @return bool
-     */
-    public static function log($message, $line, $file)
-    {
-        $PHP_VERSION = PHP_VERSION;
-        $log = <<<EOF
-			发生错误:{$message}
-	        错误文件：{$file}
-	        错误行:{$line}
-	        PHP版本：{$PHP_VERSION}
-EOF;
-        return error_log($log);
     }
 
     /**

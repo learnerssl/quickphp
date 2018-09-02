@@ -30,3 +30,4 @@ define('ERR_REQUEST_METHOD', 19);  //对不起，错误的http请求方式。
 define('ERR_VERITY', 20);  //对不起，验证码错误。
 define('ERR_LOGIN', 21);  //对不起，此操作需要登录。
 define('ERR_UNKNOWN', 22);  //对不起，未知操作类型
+define('ERR_ERROR_CODE', 23);  //对不起，错误的状态码

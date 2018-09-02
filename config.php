@@ -37,7 +37,7 @@ class config
         "direction" => "web",
         "module" => "home",
         "version" => "v1",
-        "controller" => "index",
+        "controller" => "Index",
         "method" => "index"
     );
 

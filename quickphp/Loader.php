@@ -20,13 +20,13 @@ class Loader
      */
     public static function Run($argv)
     {
-        list($direction, $module, $verison, $controller, $method) = Route::geRoute($argv);
+        list($direction, $module, $version, $controller, $method) = Route::geRoute($argv);
         if ($direction === 'web' || $direction === 'common') {
             $direction_dir = APPLICATION . '/' . $direction;
             $module_dir = $direction_dir . '/' . $module;
-            $verison_dir = $module_dir . '/' . $verison;
-            $controller_file = $verison_dir . '/controller/' . ucfirst($controller) . 'Controller.php';
-            $controller_class = '\application\\' . $direction . '\\' . $module . '\\' . $verison . '\controller\\' . ucfirst($controller) . 'Controller';
+            $version_dir = $module_dir . '/' . $version;
+            $controller_file = $version_dir . '/controller/' . ucfirst($controller) . 'Controller.php';
+            $controller_class = '\application\\' . $direction . '\\' . $module . '\\' . $version . '\controller\\' . ucfirst($controller) . 'Controller';
             try {
                 //方向检查
                 if (!is_dir($direction_dir)) {
@@ -37,8 +37,8 @@ class Loader
                     throw  new \Exception($module_dir . '文件夹不存在');
                 }
                 //版本检查
-                if (!is_dir($verison_dir)) {
-                    throw  new \Exception($verison_dir . '文件夹不存在');
+                if (!is_dir($version_dir)) {
+                    throw  new \Exception($version_dir . '文件夹不存在');
                 }
                 //文件检查
                 if (!file_exists($controller_file)) {
@@ -62,9 +62,9 @@ class Loader
         } else if ($direction === 'api') {
             $direction_dir = APPLICATION . '/' . $direction;
             $module_dir = $direction_dir . '/' . $module;
-            $verison_dir = $module_dir . '/' . $verison;
-            $controller_file = $verison_dir . '/' . $controller . '.php';
-            $controller_class = '\application\\' . $direction . '\\' . $module . '\\' . $verison . '\\' . $controller;
+            $version_dir = $module_dir . '/' . $version;
+            $controller_file = $version_dir . '/' . $controller . '.php';
+            $controller_class = '\application\\' . $direction . '\\' . $module . '\\' . $version . '\\' . $controller;
             try {
                 //方向检查
                 if (!is_dir($direction_dir)) {
@@ -75,8 +75,8 @@ class Loader
                     throw  new \Exception($module_dir . '文件夹不存在');
                 }
                 //版本检查
-                if (!is_dir($verison_dir)) {
-                    throw  new \Exception($verison_dir . '文件夹不存在');
+                if (!is_dir($version_dir)) {
+                    throw  new \Exception($version_dir . '文件夹不存在');
                 }
                 //文件检查
                 if (!file_exists($controller_file)) {

@@ -35,6 +35,7 @@ class data
         array('id' => ERR_REQUEST_METHOD, 'text' => '对不起，错误的http请求方式。'),
         array('id' => ERR_VERITY, 'text' => '对不起，验证码错误。'),
         array('id' => ERR_LOGIN, 'text' => '对不起，此操作需要登录。'),
-        array('id' => ERR_UNKNOWN, 'text' => '对不起，未知操作类型。')
+        array('id' => ERR_UNKNOWN, 'text' => '对不起，未知操作类型。'),
+        array('id' => ERR_ERROR_CODE, 'text' => '对不起，错误的状态码。'),
     );
 }

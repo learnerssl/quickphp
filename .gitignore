@@ -4,3 +4,15 @@
 # composer
 /vendor
 /composer.lock
+
+# upload
+/upload
+
+# cache
+/cache
+
+# tmp
+/tmp
+
+# log
+/log

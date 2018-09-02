@@ -6,7 +6,6 @@
     <title>Title</title>
 </head>
 <body>
-{{ name }}
-{{ age }}
+Hello Quickphp
 </body>
 </html>

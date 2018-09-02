@@ -22,9 +22,14 @@ class Redis
     {
         self::$options = \config::$redis;
         //检查一个扩展是否已经加载
-        if (!extension_loaded('redis')) {
-            throw new \Exception('不支持: Redis');
+        try {
+            if (!extension_loaded('redis')) {
+                throw new \Exception('不支持: Redis');
+            }
+        } catch (\Exception $e) {
+            Response::api_response($e->getCode(), $e->getMessage());
         }
+
 
         if (!empty($options)) {
             //合并数组

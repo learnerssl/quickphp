@@ -11,12 +11,11 @@ namespace application\web\home\v1\controller;
 
 use application\web\home\v1\HomeController;
 
-
 class IndexController extends HomeController
 {
     public function index()
     {
-        return $this->display('home/v1/:/Index/index.php',['name' => 'simon','age' => 23]);
+        return $this->display('home/v1/:/Index/index.php');
     }
 
 }

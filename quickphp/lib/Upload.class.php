@@ -31,7 +31,7 @@ class Upload
     {
         $this->fileName = $fileName;
         $this->maxSize = $maxSize;
-        //		$this->allowMime = $allowMime;
+//        $this->allowMime = $allowMime;
         $this->allowExt = $allowExt;
         $this->uploadPath = $uploadPath;
         $this->imgFlag = $imgFlag;
@@ -204,25 +204,15 @@ class Upload
 
     /**
      * 上传文件
-     * @param bool $compressImage 是否进行等比例压缩图片操作
-     * @param bool $addTextmark 是否添加文字水印
      * @return array|string
      */
-    public function uploadFile($compressImage = false, $addTextmark = false)
+    public function uploadFile()
     {
         if ($this->checkError() && $this->checkSize() && $this->checkExt() && $this->checkTrueImg() && $this->checkHTTPPost() && $this->checkUploadPath()) {
             $this->uniName = $this->getUniName();
             $src = $this->uploadPath . '/' . $this->uniName . '.' . $this->ext;
             $this->destination = ROOT . $src;
             if (move_uploaded_file($this->fileInfo['tmp_name'], $this->destination)) {
-                //等比例压缩图片(如何实现等比例)
-//                if ($compressImage) {
-//                    Image::getInstance($this->destination)->compressImage(310, 45);
-//                }
-                //添加文字水印(如何实现水印大小等比例)
-//                if ($addTextmark) {
-//                    Image::getInstance($this->destination)->addTextmark('腾挖网', 20, ROOT . '/public/fonts/simkai.ttf');
-//                }
                 return $src;
             } else {
                 $this->error = '文件移动失败';

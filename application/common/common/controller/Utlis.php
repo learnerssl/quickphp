@@ -28,14 +28,9 @@ class Utlis extends Controller
 
         //外部参数
         $id = Request::request('post', 'id');
-        $compressImage = Request::request('post', 'compressImage', false);
-        $addTextmark = Request::request('post', 'addTextmark', false);
-
-        $compressImage = $compressImage == 'false' ? false : true;
-        $addTextmark = $addTextmark == 'false' ? false : true;
 
         //上传图片
-        $ret = Upload::getInstance($name)->uploadFile($compressImage, $addTextmark);
+        $ret = Upload::getInstance($name)->uploadFile();
         if ($this->is_error($ret)) {
             $this->check_error($ret);
         }

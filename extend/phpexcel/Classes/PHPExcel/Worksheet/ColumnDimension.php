@@ -80,7 +80,7 @@ class PHPExcel_Worksheet_ColumnDimension
 	private $_collapsed		= false;
 
 	/**
-	 * Index to cellXf
+	 * index to cellXf
 	 *
 	 * @var int
 	 */

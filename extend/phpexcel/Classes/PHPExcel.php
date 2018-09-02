@@ -472,7 +472,7 @@ class PHPExcel
     /**
      * Create sheet and add it to this workbook
      *
-     * @param  int|null $iSheetIndex Index where sheet should go (0,1,..., or null for last)
+     * @param  int|null $iSheetIndex index where sheet should go (0,1,..., or null for last)
      * @return PHPExcel_Worksheet
      * @throws PHPExcel_Exception
      */
@@ -498,7 +498,7 @@ class PHPExcel
      * Add sheet
      *
      * @param  PHPExcel_Worksheet $pSheet
-     * @param  int|null $iSheetIndex Index where sheet should go (0,1,..., or null for last)
+     * @param  int|null $iSheetIndex index where sheet should go (0,1,..., or null for last)
      * @return PHPExcel_Worksheet
      * @throws PHPExcel_Exception
      */
@@ -731,7 +731,7 @@ class PHPExcel
      * Add external sheet
      *
      * @param  PHPExcel_Worksheet $pSheet External sheet to add
-     * @param  int|null $iSheetIndex Index where sheet should go (0,1,..., or null for last)
+     * @param  int|null $iSheetIndex index where sheet should go (0,1,..., or null for last)
      * @throws PHPExcel_Exception
      * @return PHPExcel_Worksheet
      */
@@ -944,7 +944,7 @@ class PHPExcel
     /**
      * Remove cellXf by index. It is ensured that all cells get their xf index updated.
      *
-     * @param  int $pIndex Index to cellXf
+     * @param  int $pIndex index to cellXf
      * @throws PHPExcel_Exception
      */
     public function removeCellXfByIndex($pIndex = 0)

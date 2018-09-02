@@ -25,8 +25,8 @@ class Loader
             $direction_dir = APPLICATION . '/' . $direction;
             $module_dir = $direction_dir . '/' . $module;
             $verison_dir = $module_dir . '/' . $verison;
-            $controller_file = $verison_dir . '/controller/' . $controller . '.php';
-            $controller_class = '\application\\' . $direction . '\\' . $module . '\\' . $verison . '\controller\\' . $controller;
+            $controller_file = $verison_dir . '/controller/' . ucfirst($controller) . 'Controller.php';
+            $controller_class = '\application\\' . $direction . '\\' . $module . '\\' . $verison . '\controller\\' . ucfirst($controller) . 'Controller';
             try {
                 //方向检查
                 if (!is_dir($direction_dir)) {

@@ -241,7 +241,7 @@ class PHPExcel_Chart_DataSeries
 	}
 
 	/**
-	 * Get Plot Label by Index
+	 * Get Plot Label by index
 	 *
 	 * @return PHPExcel_Chart_DataSeriesValues
 	 */
@@ -265,7 +265,7 @@ class PHPExcel_Chart_DataSeries
 	}
 
 	/**
-	 * Get Plot Category by Index
+	 * Get Plot Category by index
 	 *
 	 * @return PHPExcel_Chart_DataSeriesValues
 	 */
@@ -309,7 +309,7 @@ class PHPExcel_Chart_DataSeries
 	}
 
 	/**
-	 * Get Plot Values by Index
+	 * Get Plot Values by index
 	 *
 	 * @return PHPExcel_Chart_DataSeriesValues
 	 */

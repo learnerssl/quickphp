@@ -49,7 +49,7 @@ class Route
             }
         }
 
-        //定义当前方向、模块、控制器、方法
+        //定义当前方向、模块、版本、控制器、方法
         define('CURRENT_DIRECTION', self::$direction);
         define('CURRENT_MODULE', self::$module);
         define('CURRENT_VERISON', self::$version);

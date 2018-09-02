@@ -570,7 +570,7 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
      * Add chart
      *
      * @param PHPExcel_Chart $pChart
-     * @param int|null $iChartIndex Index where chart should go (0,1,..., or null for last)
+     * @param int|null $iChartIndex index where chart should go (0,1,..., or null for last)
      * @return PHPExcel_Chart
      */
     public function addChart(PHPExcel_Chart $pChart = null, $iChartIndex = null)

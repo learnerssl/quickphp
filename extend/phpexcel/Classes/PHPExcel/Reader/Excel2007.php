@@ -161,7 +161,7 @@ class PHPExcel_Reader_Excel2007 extends PHPExcel_Reader_Abstract implements PHPE
 
 
 	/**
-	 * Return worksheet info (Name, Last Column Letter, Last Column Index, Total Rows, Total Columns)
+	 * Return worksheet info (Name, Last Column Letter, Last Column index, Total Rows, Total Columns)
 	 *
 	 * @param   string     $pFilename
 	 * @throws   PHPExcel_Reader_Exception

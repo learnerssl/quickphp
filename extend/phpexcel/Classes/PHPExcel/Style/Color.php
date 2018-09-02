@@ -330,7 +330,7 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
 	/**
 	 * Get indexed color
 	 *
-	 * @param	int			$pIndex			Index entry point into the colour array
+	 * @param	int			$pIndex			index entry point into the colour array
 	 * @param	boolean		$background		Flag to indicate whether default background or foreground colour
 	 *											should be returned if the indexed colour doesn't exist
 	 * @return	PHPExcel_Style_Color

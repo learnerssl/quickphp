@@ -13,7 +13,7 @@ class common
 {
     /**
      * 返回参数值(如果不存在，则返回默认值)
-     * @param string $param
+     * @param mixed $param
      * @param mixed $dft
      * @return string
      */

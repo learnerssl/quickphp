@@ -99,7 +99,7 @@ class PHPExcel_Chart_PlotArea
 	}
 
 	/**
-	 * Get Plot Series by Index
+	 * Get Plot Series by index
 	 *
 	 * @return PHPExcel_Chart_DataSeries
 	 */

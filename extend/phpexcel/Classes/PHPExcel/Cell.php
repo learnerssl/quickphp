@@ -84,7 +84,7 @@ class PHPExcel_Cell
 	private $_parent;
 
 	/**
-	 *	Index to cellXf
+	 *	index to cellXf
 	 *
 	 *	@var	int
 	 */

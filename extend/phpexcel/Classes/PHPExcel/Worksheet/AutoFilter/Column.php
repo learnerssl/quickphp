@@ -83,7 +83,7 @@ class PHPExcel_Worksheet_AutoFilter_Column
 
 
 	/**
-	 * Autofilter Column Index
+	 * Autofilter Column index
 	 *
 	 * @var string
 	 */
@@ -135,7 +135,7 @@ class PHPExcel_Worksheet_AutoFilter_Column
 	}
 
 	/**
-	 * Get AutoFilter Column Index
+	 * Get AutoFilter Column index
 	 *
 	 * @return string
 	 */
@@ -144,7 +144,7 @@ class PHPExcel_Worksheet_AutoFilter_Column
 	}
 
 	/**
-	 *	Set AutoFilter Column Index
+	 *	Set AutoFilter Column index
 	 *
 	 *	@param	string		$pColumn		Column (e.g. A)
 	 *	@throws	PHPExcel_Exception

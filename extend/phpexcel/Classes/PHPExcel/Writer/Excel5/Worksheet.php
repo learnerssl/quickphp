@@ -149,25 +149,25 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	private $_colors;
 
 	/**
-	 * Index of first used row (at least 0)
+	 * index of first used row (at least 0)
 	 * @var int
 	 */
 	private $_firstRowIndex;
 
 	/**
-	 * Index of last used row. (no used rows means -1)
+	 * index of last used row. (no used rows means -1)
 	 * @var int
 	 */
 	private $_lastRowIndex;
 
 	/**
-	 * Index of first used column (at least 0)
+	 * index of first used column (at least 0)
 	 * @var int
 	 */
 	private $_firstColumnIndex;
 
 	/**
-	 * Index of last used column (no used columns means -1)
+	 * index of last used column (no used columns means -1)
 	 * @var int
 	 */
 	private $_lastColumnIndex;
@@ -428,7 +428,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 				$str_pos = 0;
 				$elements = $cVal->getRichTextElements();
 				foreach ($elements as $element) {
-					// FONT Index
+					// FONT index
 					if ($element instanceof PHPExcel_RichText_Run) {
 						$str_fontidx = $this->_fntHashIndex[$element->getFont()->getHashCode()];
 					}
@@ -669,7 +669,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	 * @param int $row Row index (0-based)
 	 * @param int $col Column index (0-based)
 	 * @param string $str The string
-	 * @param int $xfIndex Index to XF record
+	 * @param int $xfIndex index to XF record
 	 */
 	private function _writeString($row, $col, $str, $xfIndex)
 	{
@@ -683,7 +683,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 	 * @param int $col Column index (0-based)
 	 * @param string $str The string
 	 * @param mixed   $xfIndex The XF format index for the cell
-	 * @param array $arrcRun Index to Font record and characters beginning
+	 * @param array $arrcRun index to Font record and characters beginning
 	 */
 	private function _writeRichTextString($row, $col, $str, $xfIndex, $arrcRun){
 		$record	= 0x00FD;				   // Record identifier
@@ -3417,14 +3417,14 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 				case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT  : $blockLineStyle |= 0x0C << 12; break;
 				case PHPExcel_Style_Border::BORDER_SLANTDASHDOT      : $blockLineStyle |= 0x0D << 12; break;
 			}
-			//@todo _writeCFRule() => $blockLineStyle => Index Color for left line
-			//@todo _writeCFRule() => $blockLineStyle => Index Color for right line
+			//@todo _writeCFRule() => $blockLineStyle => index Color for left line
+			//@todo _writeCFRule() => $blockLineStyle => index Color for right line
 			//@todo _writeCFRule() => $blockLineStyle => Top-left to bottom-right on/off
 			//@todo _writeCFRule() => $blockLineStyle => Bottom-left to top-right on/off
 			$blockColor = 0;
-			//@todo _writeCFRule() => $blockColor => Index Color for top line
-			//@todo _writeCFRule() => $blockColor => Index Color for bottom line
-			//@todo _writeCFRule() => $blockColor => Index Color for diagonal line
+			//@todo _writeCFRule() => $blockColor => index Color for top line
+			//@todo _writeCFRule() => $blockColor => index Color for bottom line
+			//@todo _writeCFRule() => $blockColor => index Color for diagonal line
 			switch ($conditional->getStyle()->getBorders()->getDiagonal()->getBorderStyle()){
 				case PHPExcel_Style_Border::BORDER_NONE              : $blockColor |= 0x00 << 21; break;
 				case PHPExcel_Style_Border::BORDER_THIN              : $blockColor |= 0x01 << 21; break;

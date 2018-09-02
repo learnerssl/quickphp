@@ -78,7 +78,7 @@ class PHPExcel_Writer_Excel5_Xf
 	private $_isStyleXf;
 
 	/**
-	 * Index to the FONT record. Index 4 does not exist
+	 * index to the FONT record. index 4 does not exist
 	 * @var integer
 	 */
 	private $_fontIndex;
@@ -210,8 +210,8 @@ class PHPExcel_Writer_Excel5_Xf
 		$record         = 0x00E0;              // Record identifier
 		$length         = 0x0014;              // Number of bytes to follow
 
-		$ifnt           = $this->_fontIndex;   // Index to FONT record
-		$ifmt           = $this->_numberFormatIndex;  // Index to FORMAT record
+		$ifnt           = $this->_fontIndex;   // index to FONT record
+		$ifmt           = $this->_numberFormatIndex;  // index to FORMAT record
 
 		$align          = $this->_mapHAlign($this->_style->getAlignment()->getHorizontal());       // Alignment
 		$align         |= (int) $this->_style->getAlignment()->getWrapText()     << 3;
@@ -359,7 +359,7 @@ class PHPExcel_Writer_Excel5_Xf
 	 * It can be date, time, currency, etc...
 	 *
 	 * @access public
-	 * @param integer $numberFormatIndex Index to format record
+	 * @param integer $numberFormatIndex index to format record
 	 */
 	function setNumberFormatIndex($numberFormatIndex)
 	{

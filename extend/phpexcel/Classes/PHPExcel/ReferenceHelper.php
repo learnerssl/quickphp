@@ -134,7 +134,7 @@ class PHPExcel_ReferenceHelper
 	 * @param   string     $cellAddress        Address of the cell we're testing
 	 * @param   integer    $beforeRow          Number of the row we're inserting/deleting before
 	 * @param   integer    $pNumRows           Number of rows to insert/delete (negative values indicate deletion)
-	 * @param   integer    $beforeColumnIndex  Index number of the column we're inserting/deleting before
+	 * @param   integer    $beforeColumnIndex  index number of the column we're inserting/deleting before
 	 * @param   integer    $pNumCols           Number of columns to insert/delete (negative values indicate deletion)
 	 * @return  boolean
 	 */
@@ -159,7 +159,7 @@ class PHPExcel_ReferenceHelper
 	 *
 	 * @param   PHPExcel_Worksheet  $pSheet             The worksheet that we're editing
 	 * @param   string              $pBefore            Insert/Delete before this cell address (e.g. 'A1')
-	 * @param   integer             $beforeColumnIndex  Index number of the column we're inserting/deleting before
+	 * @param   integer             $beforeColumnIndex  index number of the column we're inserting/deleting before
 	 * @param   integer             $pNumCols           Number of columns to insert/delete (negative values indicate deletion)
 	 * @param   integer             $beforeRow          Number of the row we're inserting/deleting before
 	 * @param   integer             $pNumRows           Number of rows to insert/delete (negative values indicate deletion)
@@ -193,7 +193,7 @@ class PHPExcel_ReferenceHelper
 	 *
 	 * @param   PHPExcel_Worksheet  $pSheet             The worksheet that we're editing
 	 * @param   string              $pBefore            Insert/Delete before this cell address (e.g. 'A1')
-	 * @param   integer             $beforeColumnIndex  Index number of the column we're inserting/deleting before
+	 * @param   integer             $beforeColumnIndex  index number of the column we're inserting/deleting before
 	 * @param   integer             $pNumCols           Number of columns to insert/delete (negative values indicate deletion)
 	 * @param   integer             $beforeRow          Number of the row we're inserting/deleting before
 	 * @param   integer             $pNumRows           Number of rows to insert/delete (negative values indicate deletion)
@@ -220,7 +220,7 @@ class PHPExcel_ReferenceHelper
 	 *
 	 * @param   PHPExcel_Worksheet  $pSheet             The worksheet that we're editing
 	 * @param   string              $pBefore            Insert/Delete before this cell address (e.g. 'A1')
-	 * @param   integer             $beforeColumnIndex  Index number of the column we're inserting/deleting before
+	 * @param   integer             $beforeColumnIndex  index number of the column we're inserting/deleting before
 	 * @param   integer             $pNumCols           Number of columns to insert/delete (negative values indicate deletion)
 	 * @param   integer             $beforeRow          Number of the row we're inserting/deleting before
 	 * @param   integer             $pNumRows           Number of rows to insert/delete (negative values indicate deletion)
@@ -246,7 +246,7 @@ class PHPExcel_ReferenceHelper
 	 *
 	 * @param   PHPExcel_Worksheet  $pSheet             The worksheet that we're editing
 	 * @param   string              $pBefore            Insert/Delete before this cell address (e.g. 'A1')
-	 * @param   integer             $beforeColumnIndex  Index number of the column we're inserting/deleting before
+	 * @param   integer             $beforeColumnIndex  index number of the column we're inserting/deleting before
 	 * @param   integer             $pNumCols           Number of columns to insert/delete (negative values indicate deletion)
 	 * @param   integer             $beforeRow          Number of the row we're inserting/deleting before
 	 * @param   integer             $pNumRows           Number of rows to insert/delete (negative values indicate deletion)
@@ -271,7 +271,7 @@ class PHPExcel_ReferenceHelper
 	 *
 	 * @param   PHPExcel_Worksheet  $pSheet             The worksheet that we're editing
 	 * @param   string              $pBefore            Insert/Delete before this cell address (e.g. 'A1')
-	 * @param   integer             $beforeColumnIndex  Index number of the column we're inserting/deleting before
+	 * @param   integer             $beforeColumnIndex  index number of the column we're inserting/deleting before
 	 * @param   integer             $pNumCols           Number of columns to insert/delete (negative values indicate deletion)
 	 * @param   integer             $beforeRow          Number of the row we're inserting/deleting before
 	 * @param   integer             $pNumRows           Number of rows to insert/delete (negative values indicate deletion)
@@ -292,7 +292,7 @@ class PHPExcel_ReferenceHelper
 	 *
 	 * @param   PHPExcel_Worksheet  $pSheet             The worksheet that we're editing
 	 * @param   string              $pBefore            Insert/Delete before this cell address (e.g. 'A1')
-	 * @param   integer             $beforeColumnIndex  Index number of the column we're inserting/deleting before
+	 * @param   integer             $beforeColumnIndex  index number of the column we're inserting/deleting before
 	 * @param   integer             $pNumCols           Number of columns to insert/delete (negative values indicate deletion)
 	 * @param   integer             $beforeRow          Number of the row we're inserting/deleting before
 	 * @param   integer             $pNumRows           Number of rows to insert/delete (negative values indicate deletion)
@@ -317,7 +317,7 @@ class PHPExcel_ReferenceHelper
 	 *
 	 * @param   PHPExcel_Worksheet  $pSheet             The worksheet that we're editing
 	 * @param   string              $pBefore            Insert/Delete before this cell address (e.g. 'A1')
-	 * @param   integer             $beforeColumnIndex  Index number of the column we're inserting/deleting before
+	 * @param   integer             $beforeColumnIndex  index number of the column we're inserting/deleting before
 	 * @param   integer             $pNumCols           Number of columns to insert/delete (negative values indicate deletion)
 	 * @param   integer             $beforeRow          Number of the row we're inserting/deleting before
 	 * @param   integer             $pNumRows           Number of rows to insert/delete (negative values indicate deletion)
@@ -342,7 +342,7 @@ class PHPExcel_ReferenceHelper
 	 *
 	 * @param   PHPExcel_Worksheet  $pSheet             The worksheet that we're editing
 	 * @param   string              $pBefore            Insert/Delete before this cell address (e.g. 'A1')
-	 * @param   integer             $beforeColumnIndex  Index number of the column we're inserting/deleting before
+	 * @param   integer             $beforeColumnIndex  index number of the column we're inserting/deleting before
 	 * @param   integer             $pNumCols           Number of columns to insert/delete (negative values indicate deletion)
 	 * @param   integer             $beforeRow          Number of the row we're inserting/deleting before
 	 * @param   integer             $pNumRows           Number of rows to insert/delete (negative values indicate deletion)

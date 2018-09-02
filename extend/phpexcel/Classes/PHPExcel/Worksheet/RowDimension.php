@@ -80,7 +80,7 @@ class PHPExcel_Worksheet_RowDimension
 	private $_collapsed		= false;
 
 	/**
-	 * Index to cellXf. Null value means row has no explicit cellXf format.
+	 * index to cellXf. Null value means row has no explicit cellXf format.
 	 *
 	 * @var int|null
 	 */
@@ -101,7 +101,7 @@ class PHPExcel_Worksheet_RowDimension
     }
 
     /**
-     * Get Row Index
+     * Get Row index
      *
      * @return int
      */
@@ -110,7 +110,7 @@ class PHPExcel_Worksheet_RowDimension
     }
 
     /**
-     * Set Row Index
+     * Set Row index
      *
      * @param int $pValue
      * @return PHPExcel_Worksheet_RowDimension

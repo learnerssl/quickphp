@@ -828,7 +828,7 @@ SWFUpload.prototype.setStats = function (statsObject) {
 	this.callFlash("SetStats", [statsObject]);
 };
 
-// Public: getFile retrieves a File object by ID or Index.  If the file is
+// Public: getFile retrieves a File object by ID or index.  If the file is
 // not found then 'null' is returned.
 SWFUpload.prototype.getFile = function (fileID) {
 	if (typeof(fileID) === "number") {

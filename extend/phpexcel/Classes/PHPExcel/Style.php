@@ -85,7 +85,7 @@ class PHPExcel_Style extends PHPExcel_Style_Supervisor implements PHPExcel_IComp
     protected $_protection;
 
     /**
-     * Index of style in collection. Only used for real style.
+     * index of style in collection. Only used for real style.
      *
      * @var int
      */

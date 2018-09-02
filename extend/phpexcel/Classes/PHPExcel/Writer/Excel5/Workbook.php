@@ -248,7 +248,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 	 *
 	 * @param PHPExcel_Style
 	 * @param boolean Is it a style XF?
-	 * @return int Index to XF record
+	 * @return int index to XF record
 	 */
 	public function addXfWriter($style, $isStyleXf = false)
 	{
@@ -298,7 +298,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 	 * Add a font to added fonts
 	 *
 	 * @param PHPExcel_Style_Font $font
-	 * @return int Index to FONT record
+	 * @return int index to FONT record
 	 */
 	public function _addFont(PHPExcel_Style_Font $font)
 	{
@@ -989,7 +989,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 		$record    = 0x0293;   // Record identifier
 		$length    = 0x0004;   // Bytes to follow
 
-		$ixfe      = 0x8000;  // Index to cell style XF
+		$ixfe      = 0x8000;  // index to cell style XF
 		$BuiltIn   = 0x00;     // Built-in style
 		$iLevel    = 0xff;     // Outline style level
 

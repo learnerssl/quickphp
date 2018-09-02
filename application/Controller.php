@@ -15,6 +15,8 @@ use quickphp\lib\Response;
 
 class Controller
 {
+    private $_tmp = 'view';
+    protected $_twig  = false;
     private $assign = array();
 
     public function __construct()
@@ -57,14 +59,27 @@ class Controller
     public function display($file, $array = array())
     {
         $path = explode(':', $file);
-        $file = APPLICATION . '/' . $path[0] . '/' . $path[1] . '/' . $path[2] . '/view/' . $path[3];
+        $file = implode('/', [APPLICATION, CURRENT_DIRECTION, $path[0] . $this->_tmp . $path[1]]);
+
         try {
+            //处理模版参数
+            foreach ($array as $key => $val) {
+                $this->assign($key, $val);
+            }
+
             if (is_file($file)) {
-                foreach ($array as $key => $val) {
-                    $this->assign($key, $val);
+                if ($this->_twig) {
+                    $loader = new \Twig_Loader_Filesystem(implode('/', [APPLICATION, CURRENT_DIRECTION, $path[0] . $this->_tmp]));
+                    $twig = new \Twig_Environment($loader, array(
+                        'cache' => ROOT . '/tmp',
+                        'debug' => DEBUG
+                    ));
+                    $template = $twig->load($path[1]);
+                    echo $template->render(\common::get_default_value($this->assign,null));
+                } else {
+                    extract($this->assign);
+                    include_once $file;
                 }
-                extract($this->assign);
-                include_once $file;
             } else {
                 throw  new \Exception("模版不存在:" . $file);
             }

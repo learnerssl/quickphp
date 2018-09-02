@@ -506,7 +506,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 
 
 	/**
-	 * Return worksheet info (Name, Last Column Letter, Last Column Index, Total Rows, Total Columns)
+	 * Return worksheet info (Name, Last Column Letter, Last Column index, Total Rows, Total Columns)
 	 *
 	 * @param   string     $pFilename
 	 * @throws   PHPExcel_Reader_Exception
@@ -2016,7 +2016,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 		$objStyle = new PHPExcel_Style();
 
 		if (!$this->_readDataOnly) {
-			// offset:  0; size: 2; Index to FONT record
+			// offset:  0; size: 2; index to FONT record
 			if (self::_GetInt2d($recordData, 0) < 4) {
 				$fontIndex = self::_GetInt2d($recordData, 0);
 			} else {
@@ -2026,7 +2026,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
 			}
 			$objStyle->setFont($this->_objFonts[$fontIndex]);
 
-			// offset:  2; size: 2; Index to FORMAT record
+			// offset:  2; size: 2; index to FORMAT record
 			$numberFormatIndex = self::_GetInt2d($recordData, 2);
 			if (isset($this->_formats[$numberFormatIndex])) {
 				// then we have user-defined format code

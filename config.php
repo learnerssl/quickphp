@@ -26,6 +26,13 @@ class config
         "port" => 3306,
     );
 
+    //Sphinx配置
+    public static $sphinx_conf = array(
+        'host' => 'localhost',
+        'port' => 9312,
+        'timeout' => 0
+    );
+
     //微信配置
     public static $wx_conf = array(
         "AppID" => "",

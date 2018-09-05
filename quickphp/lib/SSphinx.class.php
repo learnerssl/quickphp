@@ -1,7 +1,16 @@
 <?php
 require_once ROOT.'/extend/sphinx/sphinxapi.php';
 
-class SSphinx extends SphinxClient
+/**
+ * require QUICKPHP.'/lib/SSphinx.class.php';
+    $cl = new \SSphinx();
+    $cl->SetServer("localhost", 9312);
+    $cl->SetMatchMode(SPH_MATCH_EXTENDED);
+    $cl->SetArrayResult(true);
+    $result = $cl->Query('','test1');
+ * Class SSphinx
+ */
+class SSphinx extends SphinxClientServer
 {
     private $_page = 1;
     private static $_config;

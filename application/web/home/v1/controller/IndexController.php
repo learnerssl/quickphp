@@ -15,7 +15,7 @@ class IndexController extends HomeController
 {
     public function index()
     {
-        return $this->display('home/v1/:/Index/index.php');
+        return $this->display('home/v1/:/Index/index.php',['welcome' => 'Hello Quickphp']);
     }
 
 }

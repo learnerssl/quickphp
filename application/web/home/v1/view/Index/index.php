@@ -6,6 +6,6 @@
     <title>Title</title>
 </head>
 <body>
-Hello Quickphp
+{{ welcome }}
 </body>
 </html>

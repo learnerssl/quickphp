@@ -83,26 +83,6 @@ class common
     }
 
     /**
-     * 获取处理后的数字
-     * 如:
-     * 3 => 3,
-     * 3.00 => 3,
-     * 3.10 => 3.10
-     * @param $number
-     * @return int
-     */
-    public static function get_number($number)
-    {
-        if (is_int($number)) {
-            $rtext = $number;
-        } else {
-            $numberArr = explode('.', $number);
-            $rtext = end($numberArr) > 1 ? $number : $numberArr[0];
-        }
-        return $rtext;
-    }
-
-    /**
      * 获取数组中某个键名的所有值
      * @param      $array
      * @param      $key

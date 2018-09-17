@@ -17,7 +17,7 @@ class Route
     private static $method;
 
     //路由解析
-    public static function geRoute($argv)
+    public static function geRoute($swoole, $argv)
     {
         //获取crontab定时脚本参数
         if (CRONTAB && is_array($argv) && !empty($argv) && count($argv) <= 6) {
@@ -35,11 +35,11 @@ class Route
                 $pathPrev = explode('/', $pathUri[0]);
 
                 //解析参数
-                self::$direction = \common::get_default_value($pathPrev[1],\config::$default_route['direction']);
-                self::$module = \common::get_default_value($pathPrev[2],\config::$default_route['module']);
-                self::$version = \common::get_default_value($pathPrev[3],\config::$default_route['version']);
-                self::$controller = \common::get_default_value($pathPrev[4],\config::$default_route['controller']);
-                self::$method = \common::get_default_value($pathPrev[5],\config::$default_route['method']);
+                self::$direction = \common::get_default_value($pathPrev[1], \config::$default_route['direction']);
+                self::$module = \common::get_default_value($pathPrev[2], \config::$default_route['module']);
+                self::$version = \common::get_default_value($pathPrev[3], \config::$default_route['version']);
+                self::$controller = \common::get_default_value($pathPrev[4], \config::$default_route['controller']);
+                self::$method = \common::get_default_value($pathPrev[5], \config::$default_route['method']);
             } else {
                 self::$direction = \config::$default_route['direction'];
                 self::$module = \config::$default_route['module'];

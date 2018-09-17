@@ -184,43 +184,6 @@ class common
     }
 
     /**
-     * 返回二维数组中某个单一列的值。
-     * 如:
-     * $a = array(
-     * array(
-     * 'id' => 5698,
-     * 'first_name' => 'Bill',
-     * 'last_name' => 'Gates',
-     * ),
-     * array(
-     * 'id' => 4767,
-     * 'first_name' => 'Steve',
-     * 'last_name' => 'Jobs',
-     * ),
-     * array(
-     * 'id' => 3809,
-     * 'first_name' => 'Mark',
-     * 'last_name' => 'Zuckerberg',
-     * )
-     * );
-     * $last_names = array_column($a, 'last_name');
-     * print_r($last_names);
-     * Array
-     * (
-     * [0] => Gates
-     * [1] => Jobs
-     * [2] => Zuckerberg
-     * )
-     * @param array $array
-     * @param string $param key
-     * @return array
-     */
-    public static function get_array_column($array, $param)
-    {
-        return array_column($array, $param);
-    }
-
-    /**
      * 一维数组转化为二维数组
      * @param array $array 一维数组
      * @return array 二维数组

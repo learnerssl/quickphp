@@ -13,7 +13,7 @@ class config
     public static $skey = 'GcLX2pahtqMIfnOxThV5US5hg3OCf7JO';
 
     //域名
-    public static $domain = '';
+    public static $domain = 'http://quickphp.romantic.ren:9503';
 
     //MySQL服务器配置
     public static $database_conf = array(

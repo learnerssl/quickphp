@@ -10,12 +10,18 @@
 namespace application\web\home\v1\controller;
 
 use application\web\home\v1\HomeController;
+use quickphp\lib\Request;
 
 class IndexController extends HomeController
 {
+
     public function index()
     {
-        return $this->display('home/v1/:/Index/index.php',['welcome' => 'Hello Quickphp']);
+        dump($_SERVER);
+        if (Request::isAjax()) {
+            $mobile = Request::request('get', 'mobile');
+        }
+        return $this->display('home/v1/:/Index/login.php');
     }
 
 }

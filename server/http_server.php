@@ -18,12 +18,37 @@ $http->on('WorkerStart', function ($server, $worker_id) {
     require __DIR__ . '/../quickphp/base.php';
 });
 
-$http->on('request', function ($request, $response) {
-//    ob_start();
-    $_SERVER['REQUEST_URI'] = $request->server['request_uri'];
-    $content = \quickphp\Loader::Run(true);
-//    ob_end_clean();
+$http->on('request', function ($request, $response) use ($http) {
+    $request_type = array('server', 'header', 'get', 'post', 'cookie', 'files');
+    foreach ($request_type as $type) {
+        if (isset($request->$type)) {
+            foreach ($request->$type as $key => $val) {
+                switch ($type) {
+                    case 'get':
+                        $_GET[$key] = $val;
+                        break;
+                    case 'post':
+                        $_POST[$key] = $val;
+                        break;
+                    case 'cookie':
+                        $_COOKIE[$key] = $val;
+                        break;
+                    case 'files':
+                        $_FILES[$key] = $val;
+                        break;
+                    default:
+                        $_SERVER[strtoupper($key)] = $val;
+                        break;
+                }
+            }
+        }
+    }
+    ob_start();
+    \quickphp\Loader::Run();
+    $content = ob_get_contents();
+    ob_end_clean();
     $response->end($content);
+//    $http->close();
 });
 
 $http->start();

@@ -17,7 +17,7 @@ class Route
     private static $method;
 
     //路由解析
-    public static function geRoute($swoole, $argv)
+    public static function geRoute($argv)
     {
         //获取crontab定时脚本参数
         if (CRONTAB && is_array($argv) && !empty($argv) && count($argv) <= 6) {

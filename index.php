@@ -4,10 +4,7 @@
 //-------------------------
 require_once __DIR__ . '/quickphp/base.php';
 
-/**
- * 第五步：启动框架
- */
-\quickphp\Loader::Run($argv);
+\quickphp\Loader::Run(false, $argv);
 
 
 

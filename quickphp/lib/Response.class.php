@@ -24,12 +24,13 @@ class Response
     ];
 
     /**
-     * @desc 按综合方式输出通信数据
-     * @param  int $error 状态码   0:请求成功,其余都为请求失败,默认为请求成功
-     * @param  string $etext 提示信息
-     * @param  array $data 数据
-     * @param  string $format 输出格式
+     * 按综合方式输出通信数据
+     * @param int $error
+     * @param string $etext
+     * @param array $data
+     * @param string $format
      * @return bool
+     * @throws \Exception
      */
     public static function api_response($error = 0, $etext = '', $data = [], $format = self::FORMAT)
     {
@@ -43,10 +44,10 @@ class Response
             header('Access-Control-Allow-Origin:' . $origin);
         }
 
-        //不正确的错误码
-        if ((int)$error <= 0) {
-            list($error, $etext) = \common::get_text_by_error(ERR_ERROR_CODE);
-        }
+//        //不正确的错误码
+//        if ((int)$error <= 0) {
+//            list($error, $etext) = \common::get_text_by_error(ERR_ERROR_CODE);
+//        }
 
         $format = \common::get_default_value($_GET['format'], $format);
         if ($format === 'json') {
@@ -58,16 +59,17 @@ class Response
     }
 
     /**
-     * @desc 按json方式输出通信数据
-     * @param  int $status 状态码
-     * @param  string $msg 提示信息
-     * @param  array $data 数据
-     * @return string
+     * 按json方式输出通信数据
+     * @param $status
+     * @param $msg
+     * @param $data
+     * @throws \Exception
      */
     private static function jsonEncode($status, $msg, $data)
     {
         $json_data = array('error' => $status, "etext" => $msg, "data" => $data);
-        exit(json_encode($json_data, JSON_UNESCAPED_UNICODE));
+        $msg = json_encode($json_data, JSON_UNESCAPED_UNICODE);
+        \common::common_exit($msg);
     }
 
     /**

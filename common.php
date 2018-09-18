@@ -12,6 +12,22 @@
 class common
 {
     /**
+     * 通用exit函数
+     * @param string $msg json格式
+     * @throws Exception
+     */
+    public static function common_exit($msg)
+    {
+        if (ENV == 'php') {
+            //php-fpm的环境
+            throw new \Exception($msg);
+        } else {
+            //swoole的环境
+            throw new Swoole\ExitException($msg);
+        }
+    }
+
+    /**
      * 返回参数值(如果不存在，则返回默认值)
      * @param mixed $param
      * @param mixed $dft

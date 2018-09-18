@@ -41,20 +41,22 @@ class Message
 
     /**
      * 发送短信操作
-     * @param int $tpl 短信模版id
+     * @param $tpl
      * @param $mobile
      * @param array $params
+     * @return bool
+     * @throws \Exception
      */
     public function send($tpl, $mobile, $params = array())
     {
         //验证非空
         if (!Regex::getInstance()->isRequire($mobile)) {
-            Response::api_response(0, '手机号不能为空');
+            return Response::api_response(FAIL, '手机号不能为空');
         }
 
         //验证手机格式
         if (!Regex::getInstance()->isMobile($mobile)) {
-            Response::api_response(0, '请输入有效手机号');
+            return Response::api_response(FAIL, '请输入有效手机号');
         }
 
         //获取短信模版
@@ -73,9 +75,9 @@ class Message
         $gateway = "http://mb345.com:999/WS/BatchSend.aspx?CorpID=" . self::$uid . "&Pwd=" . self::$passwd . "&Mobile={$mobile}&Content={$content}&Cell=&SendTime=";
         $result = file_get_contents($gateway);
         if ($result) {
-            Response::api_response(1, '发送成功!');
+            return true;
         } else {
-            Response::api_response(0, '发送失败!');
+            return Response::api_response(FAIL, '发送失败!');
         }
     }
 }

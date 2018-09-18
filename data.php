@@ -10,10 +10,12 @@
 class data
 {
     /**
-     * 错误码以及对应的描述
+     * 状态码以及对应的描述
      * @var array
      */
     public static $error_codes = array(
+        array('id' => SUCCESS, 'text' => '对不起，错误的状态码。'),
+        array('id' => FAIL, 'text' => '对不起，错误的状态码。'),
         array('id' => ERR_WRONG_ARG, 'text' => '对不起，参数错误。'),
         array('id' => ERR_NO_DATA, 'text' => '对不起，此数据已无效，请查证。'),
         array('id' => ERR_NO_RIGHT, 'text' => '对不起，您无权处理此记录。'),
@@ -37,5 +39,6 @@ class data
         array('id' => ERR_LOGIN, 'text' => '对不起，此操作需要登录。'),
         array('id' => ERR_UNKNOWN, 'text' => '对不起，未知操作类型。'),
         array('id' => ERR_ERROR_CODE, 'text' => '对不起，错误的状态码。'),
+
     );
 }

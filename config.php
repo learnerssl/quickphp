@@ -33,7 +33,7 @@ class config
         'timeout' => 0
     );
 
-    //微信配置
+    //微信公众号配置
     public static $wx_conf = array(
         "AppID" => "",
         "AppSecret" => "",
@@ -58,7 +58,7 @@ class config
         'ReqURL' => 'http://api.kdniao.cc/Ebusiness/EbusinessOrderHandle.aspx',
     );
 
-    //redis配置信息
+    //Redis配置信息
     public static $redis = array(
         'host' => '127.0.0.1',
         'port' => 6379,
@@ -72,8 +72,8 @@ class config
 
     //短信配置(凌凯短信)
     public static $message = array(
-        'uid' => '',
-        'passwd' => '',
+        'uid' => 'CQLKJ0005302',
+        'passwd' => 'twsw@6688',
     );
 
     //行业短信接口、模板配置

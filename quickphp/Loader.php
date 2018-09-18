@@ -15,11 +15,13 @@ class Loader
 {
     /**
      * 启动框架
+     * @param bool $swoole
      * @param array $argv 传递给脚本的参数数组,包含当运行于命令行下时传递给当前脚本的参数的数组。
      * @return bool
      */
-    public static function Run($argv = [])
+    public static function Run($swoole, $argv = [])
     {
+        define('ENV', $swoole ? 'swoole' : 'php');
         list($direction, $module, $version, $controller, $method) = Route::geRoute($argv);
         if ($direction === 'web' || $direction === 'common') {
             $direction_dir = APPLICATION . '/' . $direction;

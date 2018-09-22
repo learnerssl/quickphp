@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2018/9/14
- * Time: 11:32
- */
-
 header("Content-type: text/html; charset=utf-8");
 ini_set('date.timezone', 'PRC');
 
@@ -16,9 +9,10 @@ define('PUB', '/public');//定义项目资源目录
 define('DEBUG', true);//调试模式
 define('CRONTAB', true); //定时任务
 
-require ROOT . "/vendor/autoload.php";//自动加载composer下载下来的类库文件
-require QUICKPHP . '/Loader.php';//加载框架引导文件
-require ROOT . '/error.php';//加载框架错误常量文件
+require_once ROOT . "/vendor/autoload.php";//自动加载composer下载下来的类库文件
+require_once QUICKPHP . '/Loader.php';//加载框架引导文件
+require_once ROOT . '/error.php';//加载框架错误常量文件
+require_once ROOT . '/common.php'; //加载公共函数库
 if (DEBUG) {
     //如果要使用调试功能，请先使用composer install安装相关依赖
     $whoops = new \Whoops\Run;

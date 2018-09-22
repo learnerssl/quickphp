@@ -17,7 +17,7 @@ define('ERR_OUT_OF_TIME', 5);//对不起，已经超时，不能再操作。
 define('ERR_OUT_OF_EDIT', 6); //对不起，此数据不能被修改。
 define('ERR_OUT_OF_DELETE', 7); //对不起，此数据不能被删除。
 define('ERR_OUT_OF_OPERATE', 8); //对不起，此数据不能执行此操作。
-define('ERR_OUT_OF_USING', 9); //对不起，此数据不能被使用。
+define('ERR_PATH', 9); //对不起，无效的api地址。
 define('ERR_SYSTEM_ERROR', 10);  //抱歉，系统出现异常，请刷新重试。
 define('ERR_FORM_AUTHFAILED', 11);  //对不起，表单验证失败。
 define('ERR_DATA_EXIST', 12);  //对不起，数据已存在，请选用其它的。

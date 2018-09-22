@@ -15,104 +15,47 @@ class Loader
 {
     /**
      * 启动框架
-     * @param bool $swoole
-     * @param array $argv 传递给脚本的参数数组,包含当运行于命令行下时传递给当前脚本的参数的数组。
+     * @param array $argv 递给脚本的参数数组,包含当运行于命令行下时传递给当前脚本的参数的数组。
+     * @param bool $swoole 是否启用swoole服务
      * @return bool
+     * @throws \Exception
      */
-    public static function Run($swoole, $argv = [])
+    public static function Run(array $argv, bool $swoole = false)
     {
-        define('ENV', $swoole ? 'swoole' : 'php');
+        //定义当前运行环境
+        define('ENV', $swoole === true ? 'swoole' : 'php');
+
         list($direction, $module, $version, $controller, $method) = Route::geRoute($argv);
-        if ($direction === 'web' || $direction === 'common') {
-            $direction_dir = APPLICATION . '/' . $direction;
-            $module_dir = $direction_dir . '/' . $module;
-            $version_dir = $module_dir . '/' . $version;
-            $controller_file = $version_dir . '/controller/' . ucfirst($controller) . 'Controller.php';
+        try {
             $controller_class = '\application\\' . $direction . '\\' . $module . '\\' . $version . '\controller\\' . ucfirst($controller) . 'Controller';
-            try {
-                //方向检查
-                if (!is_dir($direction_dir)) {
-                    throw  new \Exception($direction_dir . '文件夹不存在');
-                }
-                //模块检查
-                if (!is_dir($module_dir)) {
-                    throw  new \Exception($module_dir . '文件夹不存在');
-                }
-                //版本检查
-                if (!is_dir($version_dir)) {
-                    throw  new \Exception($version_dir . '文件夹不存在');
-                }
-                //文件检查
-                if (!file_exists($controller_file)) {
-                    throw  new \Exception($controller_file . '文件不存在');
-                }
-                //方法检查
-                $init = new $controller_class();
-                if (!method_exists($init, $method)) {
-                    throw  new \Exception($controller_class . '\\' . $method . '方法不存在');
-                }
 
-                return $init->$method();
-            } catch (\Exception $exception) {
-                $error = array(
-                    '错误码' => $exception->getCode(),
-                    '错误信息' => $exception->getMessage(),
-                    '错误地址' => $exception->getFile() . ' ' . $exception->getLine() . '行',
-                );
-                return \common::output($error);
+            //判断api地址是否正确
+            if (!method_exists($controller_class, $method) || !class_exists($controller_class)) {
+                throw new \Exception(ERR_PATH);
             }
-        } else if ($direction === 'api') {
-            $direction_dir = APPLICATION . '/' . $direction;
-            $module_dir = $direction_dir . '/' . $module;
-            $version_dir = $module_dir . '/' . $version;
-            $controller_file = $version_dir . '/' . $controller . '.php';
-            $controller_class = '\application\\' . $direction . '\\' . $module . '\\' . $version . '\\' . $controller;
-            try {
-                //方向检查
-                if (!is_dir($direction_dir)) {
-                    throw  new \Exception($direction_dir . '文件夹不存在');
-                }
-                //模块检查
-                if (!is_dir($module_dir)) {
-                    throw  new \Exception($module_dir . '文件夹不存在');
-                }
-                //版本检查
-                if (!is_dir($version_dir)) {
-                    throw  new \Exception($version_dir . '文件夹不存在');
-                }
-                //文件检查
-                if (!file_exists($controller_file)) {
-                    throw  new \Exception($controller_file . '文件不存在');
-                }
-                //方法检查
-                $init = new $controller_class();
-                if (!method_exists($init, $method)) {
-                    throw  new \Exception($controller_class . '\\' . $method . '方法不存在');
-                }
-
-                return $init->$method();
-            } catch (\Exception $exception) {
-                Response::api_response($exception->getCode(), $exception->getMessage());
-            }
+            $init = new $controller_class();
+            return $init->$method();
+        } catch (\Exception $e) {
+            Response::api_response($e->getMessage());
         }
-        return Response::api_response(ERR_SYSTEM_ERROR);
+        return true;
     }
-
 
     /**
      * 自动加载类
-     * @param    $class string 待加载类命名空间路径
      * @des 正常实例化类：new quickphp\Route();
      *      那么由于未引入文件，将会自动加载类，其中$class：quickphp\Route()；
      *      替换成为文件路径 ROOT.'/quickphp/Route.php;
+     * @param string $class
+     * @return bool|mixed
      */
-    public static function autoload($class)
+    public static function autoload(string $class)
     {
         //判断是否是类文件;如果是类文件,文件后缀添加.class.
         if (preg_match('/\\\lib\\\/', $class)) {
-            require_once ROOT . '/' . str_replace('\\', '/', $class) . '.class.php';
+            return \common::common_include_file(ROOT . '/' . str_replace('\\', '/', $class) . '.class.php');
         } else {
-            require_once ROOT . '/' . str_replace('\\', '/', $class) . '.php';
+            return \common::common_include_file(ROOT . '/' . str_replace('\\', '/', $class) . '.php');
         }
     }
 }

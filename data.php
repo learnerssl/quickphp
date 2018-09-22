@@ -14,8 +14,8 @@ class data
      * @var array
      */
     public static $error_codes = array(
-        array('id' => SUCCESS, 'text' => '对不起，错误的状态码。'),
         array('id' => FAIL, 'text' => '对不起，错误的状态码。'),
+        array('id' => SUCCESS, 'text' => '对不起，错误的状态码。'),
         array('id' => ERR_WRONG_ARG, 'text' => '对不起，参数错误。'),
         array('id' => ERR_NO_DATA, 'text' => '对不起，此数据已无效，请查证。'),
         array('id' => ERR_NO_RIGHT, 'text' => '对不起，您无权处理此记录。'),
@@ -23,7 +23,7 @@ class data
         array('id' => ERR_OUT_OF_EDIT, 'text' => '对不起，此数据不能被修改。'),
         array('id' => ERR_OUT_OF_DELETE, 'text' => '对不起，此数据不能被删除。'),
         array('id' => ERR_OUT_OF_OPERATE, 'text' => '对不起，此数据不能执行此操作。'),
-        array('id' => ERR_OUT_OF_USING, 'text' => '对不起，此数据不能被使用。'),
+        array('id' => ERR_PATH, 'text' => '对不起，无效的api地址。'),
         array('id' => ERR_SYSTEM_ERROR, 'text' => '抱歉，系统出现异常，请刷新重试。'),
         array('id' => ERR_FORM_AUTHFAILED, 'text' => '对不起，表单验证失败。'),
         array('id' => ERR_DATA_EXIST, 'text' => '对不起，数据已存在，请选用其它的。'),

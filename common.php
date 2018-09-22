@@ -12,13 +12,23 @@
 class common
 {
     /**
+     * 引入文件
+     * @param $file
+     * @return bool|mixed
+     */
+    public static function common_include_file($file)
+    {
+        return file_exists($file) ? require_once $file : false;
+    }
+
+    /**
      * 通用exit函数
      * @param string $msg json格式
      * @throws Exception
      */
     public static function common_exit($msg)
     {
-        if (ENV == 'php') {
+        if (ENV === 'php') {
             //php-fpm的环境
             throw new \Exception($msg);
         } else {

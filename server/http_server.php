@@ -44,7 +44,7 @@ $http->on('request', function ($request, $response) use ($http) {
         }
     }
     ob_start();
-    \quickphp\Loader::Run(true);
+    \quickphp\Loader::Run([], true);
     $content = ob_get_contents();
     ob_end_clean();
     $response->end($content);

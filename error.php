@@ -9,7 +9,7 @@
 
 //状态码
 define('FAIL', 0);//对不起，参数错误。
-define('SUCCESS', 1);//对不起，参数错误。
+define('SUCCESS', 1);//操作成功。
 define('ERR_WRONG_ARG', 2);//对不起，参数错误。
 define('ERR_NO_DATA', 3);//对不起，此数据已无效，请查证。
 define('ERR_NO_RIGHT', 4);//对不起，您无权处理此记录。

@@ -51,12 +51,12 @@ class Message
     {
         //验证非空
         if (!Regex::getInstance()->isRequire($mobile)) {
-            return Response::api_response(FAIL, '手机号不能为空');
+            Response::api_response(FAIL, '手机号不能为空');
         }
 
         //验证手机格式
         if (!Regex::getInstance()->isMobile($mobile)) {
-            return Response::api_response(FAIL, '请输入有效手机号');
+            Response::api_response(FAIL, '请输入有效手机号');
         }
 
         //获取短信模版
@@ -74,10 +74,9 @@ class Message
         $content = rawurlencode(mb_convert_encoding($content, "gb2312", "utf-8"));
         $gateway = "http://mb345.com:999/WS/BatchSend.aspx?CorpID=" . self::$uid . "&Pwd=" . self::$passwd . "&Mobile={$mobile}&Content={$content}&Cell=&SendTime=";
         $result = file_get_contents($gateway);
-        if ($result) {
-            return true;
-        } else {
-            return Response::api_response(FAIL, '发送失败!');
+        if (!$result) {
+            Response::api_response(FAIL, '发送失败!');
         }
+        return true;
     }
 }

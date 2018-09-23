@@ -18,9 +18,14 @@ class Redis
 
     private static $redis;
 
+    /**
+     * Redis constructor.
+     * @throws \Exception
+     */
     private function __construct()
     {
         self::$options = \config::$redis;
+
         //检查一个扩展是否已经加载
         try {
             if (!extension_loaded('redis')) {
@@ -56,6 +61,10 @@ class Redis
         // TODO: Implement __clone() method.
     }
 
+    /**
+     * @return object|Redis
+     * @throws \Exception
+     */
     public static function getInstance()
     {
         if (!self::$handler) {

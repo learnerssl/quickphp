@@ -81,7 +81,6 @@
 
 <body>
 <header class="header xxl-font">
-    <i class="icon iconfont icon-fanhui back" id="back"></i>
     登录
 </header>
 <form class="login" id="form">
@@ -97,35 +96,34 @@
 </form>
 <script>
     $(function () {
-        var $back = $('#back');
         var $submitBtn = $('#submit-btn');
 
         // 获取验证吗
-        $('#authCodeBtn').click(function (event) {
+        $('#authCodeBtn').click(function () {
             var phone_num = $(" input[ name='phone_num' ] ").val();
-            var url = "<?php echo config::$domain;?>/index.php/web/home/v1/Index/index?mobile=" + phone_num;
-            $(this).html('已发送').attr('disabled', true);
-            $.get(url, function (data) {
-                // TODO: 将下面3行代码删除
-                if (data.status == 'ok') {
+            var url = "<?php echo config::$domain;?>/index.php/web/home/v1/Index/login?mobile=" + phone_num;
+            $.get(url, function (json) {
+                if (parseInt(json.error) === 1) {
+                    $(this).html('已发送').attr('disabled', true);
                     alert('发送完成');
+                } else {
+                    alert(json.etext);
                 }
-            });
+            }, 'json');
         });
 
         // 提交表单
         $submitBtn.click(function (event) {
             event.preventDefault();
             var formData = $('form').serialize();
-            // TODO: 请求后台接口跳转界面，前端跳转或者后台跳
-            $.get("https://www.easy-mock.com/mock/5ab1188bddac7967e4398146/example/query?" + formData, function (data) {
-                console.log("https://www.easy-mock.com/mock/5ab1188bddac7967e4398146/example/query?" + formData);
-            });
-        });
-
-        // 返回上一页
-        $back.click(function (e) {
-            window.history.back();
+            var url = "<?php echo config::$domain;?>/index.php/web/home/v1/Index/doLogin?" + formData;
+            $.get(url, function (json) {
+                if (parseInt(json.error) === 1) {
+                    location.href = "<?php echo config::$domain;?>/index.php/web/home/v1/Index/index";
+                } else {
+                    alert(json.etext);
+                }
+            }, 'json');
         });
     });
 </script>

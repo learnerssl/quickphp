@@ -15,7 +15,7 @@ class data
      */
     public static $error_codes = array(
         array('id' => FAIL, 'text' => '对不起，错误的状态码。'),
-        array('id' => SUCCESS, 'text' => '对不起，错误的状态码。'),
+        array('id' => SUCCESS, 'text' => '操作成功。'),
         array('id' => ERR_WRONG_ARG, 'text' => '对不起，参数错误。'),
         array('id' => ERR_NO_DATA, 'text' => '对不起，此数据已无效，请查证。'),
         array('id' => ERR_NO_RIGHT, 'text' => '对不起，您无权处理此记录。'),

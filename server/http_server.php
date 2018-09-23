@@ -15,10 +15,10 @@ $http->set([
 ]);
 
 $http->on('WorkerStart', function ($server, $worker_id) {
-    require __DIR__ . '/../quickphp/base.php';
 });
 
 $http->on('request', function ($request, $response) use ($http) {
+    require __DIR__ . '/../quickphp/base.php';
     $request_type = array('server', 'header', 'get', 'post', 'cookie', 'files');
     foreach ($request_type as $type) {
         if (isset($request->$type)) {
@@ -44,7 +44,7 @@ $http->on('request', function ($request, $response) use ($http) {
         }
     }
     ob_start();
-    \quickphp\Loader::Run([], true);
+    \quickphp\Loader::Run($argv = [], true);
     $content = ob_get_contents();
     ob_end_clean();
     $response->end($content);

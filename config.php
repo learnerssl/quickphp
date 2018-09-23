@@ -45,7 +45,7 @@ class config
         "module" => "home",
         "version" => "v1",
         "controller" => "Index",
-        "method" => "index"
+        "method" => "login"
     );
 
     //百度地图ak

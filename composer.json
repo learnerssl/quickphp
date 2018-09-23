@@ -21,7 +21,10 @@
     "php": ">=7.0",
     "filp/whoops": "*",
     "symfony/var-dumper": "*",
-    "twig/twig":"*"
+    "twig/twig": "*"
+  },
+  "require-dev": {
+    "eaglewu/swoole-ide-helper": "dev-master"
   },
   "repositories": {
     "packagist": {

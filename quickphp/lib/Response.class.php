@@ -32,7 +32,7 @@ class Response
             header('Access-Control-Allow-Origin:' . $origin);
         }
 
-        //不正确的错误码
+        //不正确的错误码或错误信息唯为空
         if ((int)$error <= -1 || empty($etext)) {
             list($error, $etext) = \common::get_text_by_error(empty($etext) ? $error : ERR_ERROR_CODE);
         }

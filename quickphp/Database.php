@@ -18,6 +18,12 @@ class Database
     private static $_link;
     private static $_config;
 
+    /**
+     * Database constructor.
+     * @param $table
+     * @param $key
+     * @throws \Exception
+     */
     public function __construct($table, $key)
     {
         $this->table = $table;
@@ -41,7 +47,8 @@ class Database
      * @param array $data 如:$data[] = array('username', $username,'=');
      * @param string $col
      * @param null $order
-     * @return array|null
+     * @return array
+     * @throws \Exception
      */
     public function get_list($data = array(), $col = '*', $order = null)
     {
@@ -76,10 +83,11 @@ class Database
 
     /**
      * 根据主键ID获取单条数据
-     * @param int $pkey 主键ID
+     * @param $pkey
      * @param string $col 需要获取的列
      * @param bool $for 是否需要添加行锁
      * @return mixed
+     * @throws \Exception
      */
     public function get_one_data_by_pkey($pkey, $col = '*', $for = false)
     {
@@ -105,8 +113,9 @@ class Database
      * 获取单条数据
      * @param array $data 如:$data[] = array('username', $username,'=');
      * @param string $col
-     * @param string|null $order
+     * @param null $order
      * @return mixed
+     * @throws \Exception
      */
     public function get_one_data_by_array($data, $col = '*', $order = null)
     {
@@ -141,13 +150,14 @@ class Database
 
     /**
      * 获取多条数据
-     * @param array $data
+     * @param $data
      * @param int $count
      * @param string $col
-     * @param string|null $order
+     * @param null $order
      * @param int $idx
      * @param int $limit
-     * @return array|null
+     * @return array
+     * @throws \Exception
      */
     public function get_data_by_array($data, &$count = 0, $col = '*', $order = null, $idx = 1, $limit = 15)
     {
@@ -187,13 +197,9 @@ class Database
     /**
      * 根据主键ID修改单条数据
      * @param int $pkey 主键ID
-     * @param array $datas 条件关联数组
-     * 如:
-     * $data = array(
-     * 'uname' => XXX,
-     * 'mobile' => XXX,
-     * );
+     * @param array $datas 如:$data = array('uname' => XXX,'mobile' => XXX,);
      * @return bool
+     * @throws \Exception
      */
     public function update_by_key($pkey, $datas)
     {
@@ -213,9 +219,10 @@ class Database
 
     /**
      * 根据主键ID修改数据
-     * @param int $pkey 主键id
+     * @param string $pkey 主键id
      * @param string $where 如: `ltime` = XXX,`lip`= XXX;
      * @return bool
+     * @throws \Exception
      */
     public function update_with_set_by_key($pkey, $where)
     {
@@ -229,14 +236,10 @@ class Database
     }
 
     /**
-     * 增加一条数据
-     * @param array $data
-     * 如:
-     * $data = array(
-     * 'uname' => XXX,
-     * 'mobile' => XXX,
-     * );
+     * 插入一条数据
+     * @param array $data 如:$data = array('uname' => XXX,'mobile' => XXX);
      * @return int|string
+     * @throws \Exception
      */
     public function insert($data)
     {
@@ -257,9 +260,9 @@ class Database
 
     /**
      * 获取结果集数据
-     * @param         $ret
-     * @param  Int $resulttype 产生哪种类型的数组 （MYSQLI_ASSOC | MYSQLI_NUM | MYSQLI_BOTH）
-     * @return array|null
+     * @param $ret
+     * @param int $resulttype 产生哪种类型的数组 （MYSQLI_ASSOC | MYSQLI_NUM | MYSQLI_BOTH）
+     * @return array
      */
     private function get_fetch($ret, $resulttype = MYSQLI_ASSOC)
     {
@@ -274,12 +277,13 @@ class Database
     /**
      * debug调试
      * @return bool
+     * @throws \Exception
      */
     private function get_debug()
     {
         //查看是否开启调试模式并且存在错误码
         if (DEBUG && mysqli_errno(self::$_link)) {
-            return Response::api_response(mysqli_errno(self::$_link), mysqli_error(self::$_link));
+            Response::api_response(mysqli_errno(self::$_link), mysqli_error(self::$_link));
         }
         return true;
     }
@@ -299,6 +303,7 @@ class Database
      * @param $sql
      * @param $model
      * @return array|bool|int|null|string
+     * @throws \Exception
      */
     public function sql($sql, $model)
     {
@@ -319,18 +324,19 @@ class Database
                 $data = $this->get_fetch($ret);
                 break;
             default:
-                return Response::api_response(ERR_UNKNOWN);
+                Response::api_response(ERR_UNKNOWN);
         }
         return $data;
     }
 
     /**
-     * 执行预处理语句w
+     * 执行预处理语句
      * @param string $sql 预处理语句
      * @param string $types 字符串类型  i:整形 s:字符型 f:浮点型
      * @param array $data 索引数组  如:$data = array('admin','123456');
      * @param string $type 操作类型  insert|update|detele|select
      * @return bool|int
+     * @throws \Exception
      */
     public function sql_prepare($sql, $types, $data, $type)
     {

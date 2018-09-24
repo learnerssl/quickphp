@@ -10,7 +10,6 @@
 namespace application\web\home\v1\controller;
 
 use application\web\home\v1\HomeController;
-use quickphp\lib\Message;
 use quickphp\lib\Redis;
 use quickphp\lib\Request;
 use quickphp\lib\Response;
@@ -18,7 +17,10 @@ use quickphp\lib\Response;
 class IndexController extends HomeController
 {
 
-
+    /**
+     * @return bool
+     * @throws \Exception
+     */
     public function login()
     {
         if (Request::isAjax()) {
@@ -28,22 +30,30 @@ class IndexController extends HomeController
             $code = \common::random(4, 1);
 
             try {
-                Message::getInstance()->send('tpl_101', $mobile, array($code));
-
-                $redis = new \swoole\Coroutine\redis();
-                $redis->connect(\config::$redis['host'], \config::$redis['port']);
-                $redis->set("mobile_$mobile", $code, 120);
+                //投递task任务
+                $taskData = [
+                    'type' => 'sms',
+                    'data' => [
+                        'tpl' => 'tpl_101',
+                        'mobile' => $mobile,
+                        'code' => $code
+                    ]
+                ];
+                $_SERVER['http']->task($taskData);
 
                 Response::api_response(SUCCESS);
             } catch (\Exception $e) {
                 echo $e->getMessage();
-                return true;
             }
             return true;
         }
         return $this->display('home/v1/:/Index/login.php');
     }
 
+    /**
+     * @return bool
+     * @throws \Exception
+     */
     public function doLogin()
     {
         if (Request::isAjax()) {
@@ -60,9 +70,10 @@ class IndexController extends HomeController
                 }
             } catch (\Exception $e) {
                 echo $e->getMessage();
-                return true;
             }
+            return true;
         }
+        Response::api_response(ERR_REQUEST_METHOD);
     }
 
     public function index()

@@ -18,6 +18,10 @@ class AdminController extends Controller
     protected $uid;
     protected $param;
 
+    /**
+     * AdminController constructor.
+     * @throws \Exception
+     */
     public function __construct()
     {
         parent::__construct();

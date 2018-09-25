@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ssl
- * Date: 2017/9/15
- * Time: 10:52
- * describe: Fill in the description of the document here
- */
-
-//状态码
+//错误状态码
 define('FAIL', 0);//操作失败。
 define('SUCCESS', 1);//操作成功。
 define('ERR_WRONG_ARG', 2);//对不起，参数错误。

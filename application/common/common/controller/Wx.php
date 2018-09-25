@@ -236,6 +236,7 @@ class Wx extends Controller
      * @param int $scene_id 场景值(场景值ID，临时二维码时为32位非0整型，永久二维码时最大值为100000)
      * @param string $scene_str 场景值(字符串类型，长度限制为1到64，仅永久二维码支持此字段)
      * @return string
+     * @throws \Exception
      */
     public function createQrCode($action_name = 'QR_SCENE', $scene_id = 0, $scene_str = '')
     {
@@ -254,7 +255,7 @@ class Wx extends Controller
             $array = $action_name === 'QR_LIMIT_SCENE' ? array('scene_id' => $scene_id) : array('scene_str' => $scene_str);
             $data = array('action_name' => $action_name, 'action_info' => array('scene' => $array));
         } else {
-            return Response::api_response(-1, '无效的二维码类型');
+            Response::api_response(-1, '无效的二维码类型');
         }
         //通过ticket换取二维码
         $post = json_encode($data);

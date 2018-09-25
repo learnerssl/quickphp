@@ -65,7 +65,7 @@ class Excel
                     $activeSheet->getColumnDimensionByColumn($key1)->setWidth($item1['width']);
                     $activeSheet->setCellValueByColumnAndRow($key1, $idx + 1, $item1['title']);
                 }
-                $activeSheet->setCellValueByColumnAndRow($key1, $idx + 2, \common::get_array_values_by_key($item, $item1['name'], ''));
+                $activeSheet->setCellValueByColumnAndRow($key1, $idx + 2, \common::get_array_value_by_key($item, $item1['name'], ''));
             }
             $idx++;
         } while ($idx < $cnt);

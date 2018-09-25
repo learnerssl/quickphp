@@ -115,7 +115,7 @@ class common
      * @param null $dft
      * @return null
      */
-    public static function get_array_values_by_key($array, $key, $dft = null)
+    public static function get_array_value_by_key($array, $key, $dft = null)
     {
         return (isset($array[$key]) && !empty($array[$key])) ? $array[$key] : $dft;
     }
@@ -817,7 +817,7 @@ class common
             return $_array;
         }
         foreach ($needs as $key => $item) {
-            $_array[$item] = self::get_array_values_by_key($array, $item, null);
+            $_array[$item] = self::get_array_value_by_key($array, $item, null);
         }
         return $_array;
     }

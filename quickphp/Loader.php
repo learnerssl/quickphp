@@ -26,6 +26,7 @@ class Loader
         define('ENV', $swoole === true ? 'swoole' : 'php');
 
         list($direction, $module, $version, $controller, $method) = Route::geRoute($argv);
+
         try {
             $controller_class = '\application\\' . $direction . '\\' . $module . '\\' . $version . '\controller\\' . ucfirst($controller) . 'Controller';
 

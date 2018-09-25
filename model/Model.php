@@ -28,6 +28,6 @@ class Model extends Database
      */
     public static function get($array, $key, $dft = null)
     {
-        return \common::get_array_values_by_key($array, $key, $dft);
+        return \common::get_array_value_by_key($array, $key, $dft);
     }
 }

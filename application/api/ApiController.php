@@ -13,6 +13,10 @@ class ApiController extends Controller
 {
     public $user_info = null;
 
+    /**
+     * ApiController constructor.
+     * @throws \Exception
+     */
     public function __construct()
     {
         parent::__construct();
@@ -25,7 +29,7 @@ class ApiController extends Controller
 
         //处理请求数据、检查签名
         if ($req_method == 'OPTIONS') {
-            Response::api_response(0);
+            Response::api_response(FAIL);
         } elseif ($req_method == 'GET') {
             //检查签名
             $this->check_sign($_GET);
@@ -75,6 +79,7 @@ class ApiController extends Controller
     /**
      * 检查数据签名
      * @param array $data 数据（包含sign参数，否则签名不通过）
+     * @throws \Exception
      */
     private function check_sign($data)
     {
@@ -84,8 +89,8 @@ class ApiController extends Controller
         }
 
         //提取参数、检查随机数和签名字段
-        $random = \common::array_get($data, 'random', null);
-        $sign = \common::array_get($data, 'sign', null);
+        $random = \common::get_array_value_by_key($data, 'random', null);
+        $sign = \common::get_array_value_by_key($data, 'sign', null);
         if (empty($random) || empty($sign)) {
             Response::api_response(ERR_SIGN_EXCEPTION);
         }

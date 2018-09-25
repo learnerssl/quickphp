@@ -20,7 +20,7 @@ class Route
     public static function geRoute($argv)
     {
         //获取crontab定时脚本参数
-        if (CRONTAB && is_array($argv) && !empty($argv) && count($argv) <= 6) {
+        if (CRONTAB && is_array($argv) && !empty($argv) && count($argv) == 6) {
             self::$direction = $argv[1];
             self::$module = $argv[2];
             self::$version = $argv[3];

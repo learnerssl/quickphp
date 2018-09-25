@@ -19,7 +19,7 @@ class Http
 
         $this->http->set([
             'enable_static_handler' => true,
-            'document_root' => '/home/Quickphp/public/live',
+            'document_root' => '/home/Quickphp/public',
             'worker_num' => 5,
             'task_worker_num' => 4
         ]);
@@ -76,7 +76,7 @@ class Http
             $_SERVER['http'] = $this->http;
         }
         ob_start();
-        \quickphp\Loader::Run($argv = [], true);
+        \quickphp\Loader::Run($_SERVER['argv'], true);
         $content = ob_get_contents();
         ob_end_clean();
         $response->end($content);
@@ -127,4 +127,4 @@ class Http
     }
 }
 
-$Ws = new Http();
+$Http = new Http();

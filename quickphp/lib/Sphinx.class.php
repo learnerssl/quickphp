@@ -1,16 +1,16 @@
 <?php
-require_once ROOT.'/extend/sphinx/sphinxapi.php';
+require_once ROOT . '/extend/sphinx/sphinxapi.php';
 
 /**
- * require QUICKPHP.'/lib/SSphinx.class.php';
-    $cl = new \SSphinx();
-    $cl->SetServer("localhost", 9312);
-    $cl->SetMatchMode(SPH_MATCH_EXTENDED);
-    $cl->SetArrayResult(true);
-    $result = $cl->Query('','test1');
- * Class SSphinx
+ * require QUICKPHP.'/lib/Sphinx.class.php';
+ * $cl = new \Sphinx();
+ * $cl->SetServer("localhost", 9312);
+ * $cl->SetMatchMode(SPH_MATCH_EXTENDED);
+ * $cl->SetArrayResult(true);
+ * $result = $cl->Query('','test1');
+ * Class Sphinx
  */
-class SSphinx extends SphinxClientServer
+class Sphinx extends SphinxClientServer
 {
     private $_page = 1;
     private static $_config;
@@ -40,13 +40,4 @@ class SSphinx extends SphinxClientServer
         $this->SetLimits(($this->_page - 1) * $this->_limit, $this->_limit);
     }
 
-    /**
-     * 重构父方法，让其失效
-     * @param $host
-     * @param int $port
-     */
-    function SetServer($host, $port = 0)
-    {
-
-    }
 }

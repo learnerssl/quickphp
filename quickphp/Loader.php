@@ -32,12 +32,12 @@ class Loader
 
             //判断api地址是否正确
             if (!method_exists($controller_class, $method) || !class_exists($controller_class)) {
-                throw new \Exception(ERR_PATH);
+                Response::api_response(ERR_PATH);
             }
             $init = new $controller_class();
             return $init->$method();
         } catch (\Exception $e) {
-            Response::api_response($e->getMessage());
+            echo $e->getMessage();
         }
         return true;
     }

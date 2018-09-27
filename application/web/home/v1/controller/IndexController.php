@@ -88,9 +88,7 @@ class IndexController extends HomeController
         $cl->SetServer("localhost", 9312);
         $cl->SetMatchMode(SPH_MATCH_EXTENDED);
         $cl->SetArrayResult(true);
-//        $cl->SetFilter('art_title', array(crc32('test')));
-//        $cl->SetFilter('art_content', array(crc32('test')));
-        $result = $cl->Query('test', 'test1');
+        $result = $cl->Query('电视台', 'test1');
         dump($result);
         exit;
     }

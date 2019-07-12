@@ -9,6 +9,12 @@
  */
 class config
 {
+    public static $public_js = PUB;
+
+    public static $public_css = PUB;
+
+    public static $public_img = PUB;
+
     //系统加密key
     public static $skey = 'GcLX2pahtqMIfnOxThV5US5hg3OCf7JO';
 

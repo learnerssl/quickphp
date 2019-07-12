@@ -17,8 +17,5 @@ class HomeController extends Controller
     {
         parent::__construct();
         $this->_twig = false; //是否使用twig模版引擎
-//        $this->assign('PUBLICCSS', PUB);//定义项目css目录
-//        $this->assign('PUBLICJS', PUB);//定义项目js目录
-//        $this->assign('PUBLICIMG', PUB);//定义项目img目录
     }
 }

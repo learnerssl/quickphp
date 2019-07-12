@@ -25,10 +25,10 @@ class Controller
         \common::header('X-XSS-Protection', '1');
     }
 
-
     /**
      * 检查并输出错误信息
      * @param $info
+     * @throws \Exception
      */
     public function check_error($info)
     {

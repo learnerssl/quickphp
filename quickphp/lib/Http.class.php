@@ -30,15 +30,16 @@ class Http {
 		}
 		return self::$_instance;
 	}
-	
-	/**
-	 * 封装通用curl操作
-	 * @param string $url 请求的接口地址
-	 * @param string $type 请求方式(get|post) 默认为get
-	 * @param string $output 输出格式 (json|xml|array) 默认为json
-	 * @param mixed  $data post方式传递的参数，默认为空数组
-	 * @return mixed|null|\SimpleXMLElement|string
-	 */
+
+    /**
+     * 封装通用curl操作
+     * @param string $url 请求的接口地址
+     * @param string $type 请求方式(get|post) 默认为get
+     * @param string $output 输出格式 (json|xml|array) 默认为json
+     * @param mixed  $data post方式传递的参数，默认为空数组
+     * @return bool|mixed|\SimpleXMLElement|string|void|null
+     * @throws \Exception
+     */
 	public static function http_curl( $url, $type = 'get', $output = 'array', $data = array() )
 	{
 		$ret = null;

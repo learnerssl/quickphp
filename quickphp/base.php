@@ -24,7 +24,7 @@ if (DEBUG) {
     ini_set('display_errors', 'Off');//关闭错误信息
 }
 
-Seaslog::setBasePath(ROOT . '/log/');
+//Seaslog::setBasePath(ROOT . '/log/');
 
 //使用示例：
 //SeasLog::log(SEASLOG_ERROR,'this is a error test by ::log');

@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: ssl
- * Date: 2017/8/26
- * Time: 09:01
- * Des:硬编码文件
- */
 class data
 {
     /**
@@ -39,6 +32,5 @@ class data
         array('id' => ERR_LOGIN, 'text' => '对不起，此操作需要登录。'),
         array('id' => ERR_UNKNOWN, 'text' => '对不起，未知操作类型。'),
         array('id' => ERR_ERROR_CODE, 'text' => '对不起，错误的状态码。'),
-
     );
 }

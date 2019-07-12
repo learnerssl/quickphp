@@ -101,7 +101,11 @@ class Request
      */
     public static function checkToken($csrf)
     {
-        return base64_encode($csrf) == Redis::getInstance()->get('csrf') ? true : \common::output_error(ERR_FORM_AUTHFAILED);
+        $redis_csrf = Redis::getInstance()->get('csrf');
+        if ($redis_csrf == base64_encode($csrf))
+            return true;
+        else
+            return \common::output_error(ERR_FORM_AUTHFAILED);
     }
 
     /**
